@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import GatheringBody from '../../components/TreePlanner/Gathering/Body';
 import FiremakingBody from '../../components/TreePlanner/Firemaking/Body';
 import FletchingBody from '../../components/TreePlanner/Fletching/Body';
@@ -13,12 +14,20 @@ class TreePlanner extends Component {
         {id: 1, body: GatheringBody},
         {id: 2, body: FiremakingBody},
         {id: 3, body: FletchingBody}
-      ]
+      ],
+      trees: []
     }
   }
   handleSectionClick = (id) => {
     this.setState({ selectedOptionId: id})
   };
+  componentDidMount() {
+    axios.get('https://8y35tqer0g.execute-api.us-east-1.amazonaws.com/dev/tree')
+      .then(resp => {
+        this.setState({trees: resp.data.items});
+      })
+      .catch(err => {console.log(err)})
+  }
   render() {
     const Body = this.state.sections.find(({ id }) => id === this.state.selectedOptionId).body;
     return (

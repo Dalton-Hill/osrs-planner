@@ -5,10 +5,12 @@ and allows the user to plan out how many levels they can progress given the amou
 that they currently possess.
 
 
-### Technologies to be Used
+### Technologies/Packages to be Used
 * AWS lambda
 * AWS DynamoDB
 * Serverless Framework
 * ExpressJS
 * NodeJS
 * ReactJS
+* Axios
+* Bootstrap 4
