@@ -21,10 +21,24 @@ class TreePlanner extends Component {
   handleSectionClick = (id) => {
     this.setState({ selectedOptionId: id})
   };
+
+  handleLogCountChange = (event, logName) => {
+    const trees = [...this.state.trees];
+    const treeToChangeIndex = trees.findIndex(tree => tree.log.name === logName);
+    trees[treeToChangeIndex].log.count = event.target.value;
+    this.setState({trees: trees})
+  };
+
   componentDidMount() {
     axios.get('https://8y35tqer0g.execute-api.us-east-1.amazonaws.com/dev/tree')
       .then(resp => {
-        this.setState({trees: resp.data.items});
+        const trees = resp.data.items;
+        trees.sort((tree1, tree2) => {
+          if (tree1.name < tree2.name) return -1;
+          if (tree1.name > tree2.name) return 1;
+          return 0;
+        });
+        this.setState({trees: trees});
       })
       .catch(err => {console.log(err)})
   }
@@ -46,7 +60,7 @@ class TreePlanner extends Component {
           </ul>
         </div>
         <div className="card-body">
-          <Body/>
+          <Body trees={this.state.trees} handleLogCountChange={this.handleLogCountChange}/>
         </div>
       </div>
     )
