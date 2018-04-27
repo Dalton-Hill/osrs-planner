@@ -4,8 +4,6 @@ import css from './Log.module.css';
 
 const log = ({ log, change }) => {
   const isCountValid = !isNaN(parseInt(log.count, 10));
-  const isValidClass = isCountValid ? "is-valid" : "is-invalid";
-  const feedBack = isCountValid ? null: <div className={"invalid-feedback"}>Not a number</div>;
   const experienceGained = isCountValid ? parseInt(log.count, 10) * log.woodcutting_xp : 0;
   return (
     <div className={["form-row", css["log-row"]].join(' ')}>
@@ -17,9 +15,8 @@ const log = ({ log, change }) => {
       </div>
       <div className={"col-mid-3 mb-3"}>
         <label>Count Chopped</label>
-        <input value={log.count} className={["form-control", isValidClass].join(" ")}
+        <input value={log.count} className={"form-control"}
                onChange={(event) => change(event, log.name)}/>
-        {feedBack}
       </div>
       <div className={"col-mid-3 mb-3"}>
         <label>Experience Gained</label>

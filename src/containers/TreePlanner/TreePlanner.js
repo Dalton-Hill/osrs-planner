@@ -24,16 +24,31 @@ class TreePlanner extends Component {
   };
 
   handleLogCountChange = (event, logName) => {
+    let intValue = parseInt(event.target.value, 10);
+    if (isNaN(intValue)) {
+      intValue = 0;
+    }
     const trees = [...this.state.trees];
     const treeToChangeIndex = trees.findIndex(tree => tree.log.name === logName);
-    trees[treeToChangeIndex].log.count = event.target.value;
+    trees[treeToChangeIndex].log.count = intValue;
+    this.setState({trees: trees})
+  };
+
+  handleBurnCountChange = (event, logName) => {
+    let intValue = parseInt(event.target.value, 10);
+    if (isNaN(intValue)) {
+      intValue = 0;
+    }
+    const trees = [...this.state.trees];
+    const treeToChangeIndex = trees.findIndex(tree => tree.log.name === logName);
+    trees[treeToChangeIndex].log.countToBurn = intValue;
     this.setState({trees: trees})
   };
 
   componentDidMount() {
     axios.get('https://8y35tqer0g.execute-api.us-east-1.amazonaws.com/dev/tree')
       .then(resp => {
-        const trees = resp.data.items;
+        let trees = resp.data.items;
         trees.sort((tree1, tree2) => {
           if (tree1.name < tree2.name) return -1;
           if (tree1.name > tree2.name) return 1;
@@ -51,7 +66,8 @@ class TreePlanner extends Component {
           <Tabs sections={this.state.sections} click={this.handleSectionClick}/>
         </div>
         <div className="card-body">
-          <Body trees={this.state.trees} handleLogCountChange={this.handleLogCountChange}/>
+          <Body trees={this.state.trees} handleLogCountChange={this.handleLogCountChange}
+                handleBurnCountChange={this.handleBurnCountChange}/>
         </div>
       </div>
     )
