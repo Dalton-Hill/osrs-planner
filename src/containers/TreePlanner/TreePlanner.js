@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from 'axios'
+import Tabs from '../../components/TreePlanner/Tabs/Tabs';
 import GatheringBody from '../../components/TreePlanner/Gathering/Body';
 import FiremakingBody from '../../components/TreePlanner/Firemaking/Body';
 import FletchingBody from '../../components/TreePlanner/Fletching/Body';
@@ -11,9 +12,9 @@ class TreePlanner extends Component {
     this.state = {
       selectedOptionId: 1,
       sections: [
-        {id: 1, body: GatheringBody},
-        {id: 2, body: FiremakingBody},
-        {id: 3, body: FletchingBody}
+        {id: 1, name: 'Gathering', body: GatheringBody},
+        {id: 2, name: 'Firemaking', body: FiremakingBody},
+        {id: 3, name: 'Fletching', body: FletchingBody}
       ],
       trees: []
     }
@@ -47,17 +48,7 @@ class TreePlanner extends Component {
     return (
       <div className="card text-center">
         <div className="card-header">
-          <ul className="nav nav-tabs card-header-tabs">
-            <li className={"nav-item"}>
-              <button className="nav-link" onClick={() => this.handleSectionClick(1)}>Gathering</button>
-            </li>
-            <li className={"nav-item"}>
-              <button className="nav-link" onClick={() => this.handleSectionClick(2)}>Firemaking</button>
-            </li>
-            <li className={"nav-item"}>
-              <button className="nav-link" onClick={() => this.handleSectionClick(3)}>Fletching</button>
-            </li>
-          </ul>
+          <Tabs sections={this.state.sections} click={this.handleSectionClick}/>
         </div>
         <div className="card-body">
           <Body trees={this.state.trees} handleLogCountChange={this.handleLogCountChange}/>
