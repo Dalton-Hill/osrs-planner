@@ -3,7 +3,7 @@ import css from './Log.module.css';
 
 
 const log = ({ log, change }) => {
-  const isCountValid = !isNaN(log.count);
+  const isCountValid = !isNaN(parseInt(log.count, 10));
   const isValidClass = isCountValid ? "is-valid" : "is-invalid";
   const feedBack = isCountValid ? null: <div className={"invalid-feedback"}>Not a number</div>;
   const experienceGained = isCountValid ? parseInt(log.count, 10) * log.woodcutting_xp : 0;
