@@ -7,7 +7,7 @@ const tabs = ({ sections, click }) => {
     <ul className="nav nav-tabs card-header-tabs">
       {sections.map(section => {
         return (
-          <Tab id={section.id} name={section.name} click={click}/>
+          <Tab id={section.id} name={section.name} key={section.id} click={click}/>
         )
       })}
     </ul>

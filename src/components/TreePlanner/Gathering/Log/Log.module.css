@@ -1,4 +1,8 @@
-.Log {
+.log-image {
     height: 30px;
     width: 30px;
+}
+
+.log-row {
+  padding: 2em;
 }
