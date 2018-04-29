@@ -9,7 +9,7 @@ const body = ({ trees, handleLogCountChange }) => {
       <table className={"table"}>
         <thead>
           <tr>
-            <th>Type</th>
+            <th>Item</th>
             <th>Gathered</th>
             <th>Experience Gained</th>
           </tr>
