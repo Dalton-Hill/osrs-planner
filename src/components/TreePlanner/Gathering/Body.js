@@ -1,5 +1,5 @@
 import React from 'react';
-import Log from './Log/Log';
+import Row from './Row';
 
 
 const body = ({ trees, handleLogCountChange }) => {
@@ -15,7 +15,7 @@ const body = ({ trees, handleLogCountChange }) => {
           </tr>
         </thead>
         <tbody>
-          { trees.map((tree, index) => <Log className={"row"} log={tree.log}
+          { trees.map((tree, index) => <Row className={"row"} log={tree.log}
                                             change={handleLogCountChange} key={index}/>) }
         </tbody>
       </table>

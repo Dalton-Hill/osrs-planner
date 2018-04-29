@@ -9,7 +9,7 @@ const body = ({ trees, handleBurnCountChange }) => {
       <table className={"table"}>
         <thead>
           <tr>
-            <th scope={"col"}>Type</th>
+            <th scope={"col"}>Item</th>
             <th scope={"col"}>Available</th>
             <th scope={"col"}>Burn</th>
             <th scope={"col"}>Experience Gained</th>
