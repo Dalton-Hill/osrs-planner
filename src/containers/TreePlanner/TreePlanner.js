@@ -6,6 +6,15 @@ import FiremakingBody from '../../components/TreePlanner/Firemaking/Body';
 import FletchingBody from '../../components/TreePlanner/Fletching/Body';
 
 
+const updatePath = (obj, path, attribute, value) => {
+  if (path.length) {
+    updatePath(obj[path.splice(0, 1)], path, attribute, value)
+  } else {
+    obj[attribute] = value
+  }
+};
+
+
 class TreePlanner extends Component {
   constructor(props) {
     super(props);
@@ -36,13 +45,20 @@ class TreePlanner extends Component {
 
   handleBurnCountChange = (event, logName) => {
     let intValue = parseInt(event.target.value, 10);
-    if (isNaN(intValue)) {
-      intValue = 0;
-    }
+    if (isNaN(intValue)) intValue = 0;
     const trees = [...this.state.trees];
     const treeToChangeIndex = trees.findIndex(tree => tree.log.name === logName);
     trees[treeToChangeIndex].log.countToBurn = intValue;
-    this.setState({trees: trees})
+    this.setState({ trees })
+  };
+
+  handleFletchingProductChange = (event, pathToItem, maxPossibleProd) => {
+    let intValue = parseInt(event.target.value, 10);
+    if (isNaN(intValue)) intValue = 0;
+    if (intValue > maxPossibleProd) intValue = maxPossibleProd;
+    const trees = [...this.state.trees];
+    updatePath(trees, pathToItem, 'count', intValue);
+    this.setState({ trees })
   };
 
   componentDidMount() {
@@ -54,7 +70,7 @@ class TreePlanner extends Component {
           if (tree1.name > tree2.name) return 1;
           return 0;
         });
-        this.setState({trees: trees});
+        this.setState({ trees });
       })
       .catch(err => {console.log(err)})
   }
@@ -67,7 +83,8 @@ class TreePlanner extends Component {
         </div>
         <div className="card-body">
           <Body trees={this.state.trees} handleLogCountChange={this.handleLogCountChange}
-                handleBurnCountChange={this.handleBurnCountChange}/>
+                handleBurnCountChange={this.handleBurnCountChange}
+                handleFletchingProductChange={this.handleFletchingProductChange}/>
         </div>
       </div>
     )
