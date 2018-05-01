@@ -28,7 +28,7 @@ const item = ({ fletching_product, change }) => {
     <tr>
       <td><img src={image_url} alt={name}/>{name}</td>
       <td><input className={"form-control"} value={maxPossibleProd} readOnly={true}/></td>
-      <td><input className={"form-control"} value={count} onChange={(event) => change(event, path, maxPossibleProd)}/></td>
+      <td><input className={"form-control"} value={count <= maxPossibleProd ? count : maxPossibleProd} onChange={(event) => change(event, path, maxPossibleProd)}/></td>
       <td>{unpackRequiredPictures(requiredItems)}</td>
       <td>{xp_reward * (count > maxPossibleProd ? maxPossibleProd : count)}</td>
       <td>{high_alchemy_value}</td>
