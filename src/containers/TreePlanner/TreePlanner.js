@@ -48,7 +48,8 @@ class TreePlanner extends Component {
     if (isNaN(intValue)) intValue = 0;
     const trees = [...this.state.trees];
     const treeToChangeIndex = trees.findIndex(tree => tree.log.name === logName);
-    trees[treeToChangeIndex].log.countToBurn = intValue;
+    const logCount = trees[treeToChangeIndex].log.count;
+    trees[treeToChangeIndex].log.countToBurn = (intValue <= logCount ? intValue : logCount);
     this.setState({ trees })
   };
 

@@ -16,9 +16,9 @@
 .env.test.local
 .env.production.local
 
-npm-debug.row*
-yarn-debug.row*
-yarn-error.row*
+npm-debug.item*
+yarn-debug.item*
+yarn-error.item*
 
 .idea/
 .gitignore~

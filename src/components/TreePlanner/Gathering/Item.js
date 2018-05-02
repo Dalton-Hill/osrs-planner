@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const row = ({ log, change }) => {
+const item = ({ log, change }) => {
   const isCountValid = !isNaN(parseInt(log.count, 10));
   const experienceGained = isCountValid ? parseInt(log.count, 10) * log.woodcutting_xp : 0;
   return (
@@ -14,4 +14,4 @@ const row = ({ log, change }) => {
 };
 
 
-export default row;
+export default item;
