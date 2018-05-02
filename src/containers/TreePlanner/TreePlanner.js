@@ -10,7 +10,17 @@ const updatePath = (obj, path, attribute, value) => {
   if (path.length) {
     updatePath(obj[path.splice(0, 1)], path, attribute, value)
   } else {
+    console.log(obj, value);
     obj[attribute] = value
+  }
+};
+
+
+const returnPathAttr = (obj, path, attribute) => {
+  if (path.length) {
+    return returnPathAttr(obj[path.splice(0, 1)], path, attribute)
+  } else {
+    return obj[attribute]
   }
 };
 
@@ -49,10 +59,10 @@ class TreePlanner extends Component {
     const trees = [...this.state.trees];
     const treeToChangeIndex = trees.findIndex(tree => tree.log.name === logName);
     const logCount = trees[treeToChangeIndex].log.count;
-    trees[treeToChangeIndex].log.countToBurn = (intValue <= logCount ? intValue : logCount);
-    trees[treeToChangeIndex].log.fletching_products.map(prod => {
-      prod.count = 0;
-      prod.next_product.count = 0;
+    const countToBurn = (intValue <= logCount ? intValue : logCount);
+    trees[treeToChangeIndex].log.countToBurn = countToBurn;
+    trees[treeToChangeIndex].log.fletching_products.forEach((prod, index) => {
+      this.setNewCap(logCount - countToBurn, [treeToChangeIndex, 'log', 'fletching_products', index])
     });
     this.setState({ trees })
   };
@@ -64,6 +74,17 @@ class TreePlanner extends Component {
     const trees = [...this.state.trees];
     updatePath(trees, pathToItem, 'count', intValue);
     this.setState({ trees })
+  };
+
+  setNewCap = (cap, pathToItem) => {
+    const trees = [...this.state.trees];
+    const copyPath = [...pathToItem];
+    const currentCount = returnPathAttr(trees, pathToItem, 'count');
+    console.log(cap, currentCount);
+    if (cap < currentCount) {
+      updatePath(trees, copyPath, 'count', cap);
+      this.setState({ trees })
+    }
   };
 
   componentDidMount() {
