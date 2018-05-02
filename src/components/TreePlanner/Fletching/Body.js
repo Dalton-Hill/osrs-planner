@@ -7,7 +7,7 @@ const unpackProducts = (log, treeIndex) => {
   log.fletching_products.forEach((product, productIndex) => {
     const { next_product } = product;
     product.path = [treeIndex, 'log', 'fletching_products', productIndex];
-    next_product.path = [treeIndex, 'log', 'fletching_products', productIndex, ['next_product']];
+    next_product.path = [treeIndex, 'log', 'fletching_products', productIndex, 'next_product'];
     product.requiredItems = [log];
     next_product.requiredItems = [product];
     products.push(product);

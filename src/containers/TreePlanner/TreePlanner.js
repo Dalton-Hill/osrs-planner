@@ -49,8 +49,10 @@ class TreePlanner extends Component {
     }
     const trees = [...this.state.trees];
     const treeToChangeIndex = trees.findIndex(tree => tree.log.name === logName);
+    const currentBurnCount = trees[treeToChangeIndex].log.countToBurn;
     trees[treeToChangeIndex].log.count = intValue;
-    this.setState({trees: trees})
+    trees[treeToChangeIndex].log.countToBurn = intValue < currentBurnCount ? intValue : currentBurnCount;
+    this.setState({trees: trees});
   };
 
   handleBurnCountChange = (event, logName) => {
@@ -62,7 +64,7 @@ class TreePlanner extends Component {
     const countToBurn = (intValue <= logCount ? intValue : logCount);
     trees[treeToChangeIndex].log.countToBurn = countToBurn;
     trees[treeToChangeIndex].log.fletching_products.forEach((prod, index) => {
-      this.setNewCap(logCount - countToBurn, [treeToChangeIndex, 'log', 'fletching_products', index])
+      this.setNewCap(logCount - countToBurn, [treeToChangeIndex, 'log', 'fletching_products', index], 'count')
     });
     this.setState({ trees })
   };
@@ -72,17 +74,22 @@ class TreePlanner extends Component {
     if (isNaN(intValue)) intValue = 0;
     if (intValue > maxPossibleProd) intValue = maxPossibleProd;
     const trees = [...this.state.trees];
+    const copyPath = [...pathToItem];
     updatePath(trees, pathToItem, 'count', intValue);
-    this.setState({ trees })
+    this.setState({ trees });
+    if (typeof copyPath.find(section => section === 'next_product') === 'undefined') {
+      const childPath = [...copyPath, 'next_product'];
+      this.setNewCap(intValue, childPath, 'count')
+    }
   };
 
-  setNewCap = (cap, pathToItem) => {
+  setNewCap = (cap, pathToItem, attr) => {
     const trees = [...this.state.trees];
     const copyPath = [...pathToItem];
     const currentCount = returnPathAttr(trees, pathToItem, 'count');
     console.log(cap, currentCount);
     if (cap < currentCount) {
-      updatePath(trees, copyPath, 'count', cap);
+      updatePath(trees, copyPath, attr, cap);
       this.setState({ trees })
     }
   };
