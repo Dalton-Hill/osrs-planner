@@ -50,6 +50,10 @@ class TreePlanner extends Component {
     const treeToChangeIndex = trees.findIndex(tree => tree.log.name === logName);
     const logCount = trees[treeToChangeIndex].log.count;
     trees[treeToChangeIndex].log.countToBurn = (intValue <= logCount ? intValue : logCount);
+    trees[treeToChangeIndex].log.fletching_products.map(prod => {
+      prod.count = 0;
+      prod.next_product.count = 0;
+    });
     this.setState({ trees })
   };
 
