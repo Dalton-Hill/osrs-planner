@@ -66,8 +66,8 @@ class TreePlanner extends Component {
       .then(resp => {
         let trees = resp.data.items;
         trees.sort((tree1, tree2) => {
-          if (tree1.name < tree2.name) return -1;
-          if (tree1.name > tree2.name) return 1;
+          if (tree1.log.woodcutting_xp < tree2.log.woodcutting_xp) return -1;
+          if (tree1.log.woodcutting_xp > tree2.log.woodcutting_xp) return 1;
           return 0;
         });
         this.setState({ trees });
