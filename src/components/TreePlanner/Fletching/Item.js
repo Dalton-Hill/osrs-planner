@@ -24,14 +24,16 @@ const maxPossibleProduct = (requiredItems) => {
 const item = ({ fletching_product, change }) => {
   const { image_url, name, xp_reward, count, high_alchemy_value, requiredItems, path } = fletching_product;
   const maxPossibleProd = maxPossibleProduct(requiredItems);
+  const limitedCount = count <= maxPossibleProd ? count : maxPossibleProd;  // Count that cannot exceed maxPossibleProd
+  const high_alch_total = high_alchemy_value * (limitedCount);
   return (
     <tr>
       <td><img src={image_url} alt={name}/>{name}</td>
       <td><input className={"form-control"} value={maxPossibleProd} readOnly={true}/></td>
-      <td><input className={"form-control"} value={count <= maxPossibleProd ? count : maxPossibleProd} onChange={(event) => change(event, path, maxPossibleProd)}/></td>
+      <td><input className={"form-control"} value={limitedCount} onChange={(event) => change(event, path, maxPossibleProd)}/></td>
       <td>{unpackRequiredPictures(requiredItems)}</td>
-      <td>{xp_reward * (count > maxPossibleProd ? maxPossibleProd : count)}</td>
-      <td>{high_alchemy_value}</td>
+      <td>{xp_reward * (limitedCount)}</td>
+      <td>{isNaN(high_alch_total) ? null : high_alch_total}</td>
     </tr>
   )
 };
