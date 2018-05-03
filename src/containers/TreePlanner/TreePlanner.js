@@ -7,18 +7,19 @@ import FletchingBody from '../../components/TreePlanner/Fletching/Body';
 
 
 const updatePath = (obj, path, attribute, value) => {
-  if (path.length) {
-    updatePath(obj[path.splice(0, 1)], path, attribute, value)
+  const copyPath = [...path];
+  if (copyPath.length) {
+    updatePath(obj[copyPath.splice(0, 1)], copyPath, attribute, value)
   } else {
-    console.log(obj, value);
     obj[attribute] = value
   }
 };
 
 
 const returnPathAttr = (obj, path, attribute) => {
-  if (path.length) {
-    return returnPathAttr(obj[path.splice(0, 1)], path, attribute)
+  const copyPath = [...path];
+  if (copyPath.length) {
+    return returnPathAttr(obj[copyPath.splice(0, 1)], copyPath, attribute)
   } else {
     return obj[attribute]
   }
@@ -49,10 +50,31 @@ class TreePlanner extends Component {
     }
     const trees = [...this.state.trees];
     const treeToChangeIndex = trees.findIndex(tree => tree.log.name === logName);
-    const currentBurnCount = trees[treeToChangeIndex].log.countToBurn;
+    if (trees[treeToChangeIndex].log.count > intValue) {
+      this.capBurnCount(intValue, treeToChangeIndex);
+      this.capFletchCount(intValue - trees[treeToChangeIndex].log.countToBurn, treeToChangeIndex);
+    }
     trees[treeToChangeIndex].log.count = intValue;
-    trees[treeToChangeIndex].log.countToBurn = intValue < currentBurnCount ? intValue : currentBurnCount;
     this.setState({trees: trees});
+  };
+
+  capBurnCount = (cap, treeIndex) => {
+    const trees = [...this.state.trees];
+    if (trees[treeIndex].log.countToBurn > cap) {
+      trees[treeIndex].log.countToBurn = cap;
+      this.setState({ trees });
+    }
+  };
+
+  capFletchCount = (cap, treeIndex) => {
+    const trees = [...this.state.trees];
+    trees[treeIndex].log.fletching_products.forEach(fp => {
+      if (fp.count > cap) {
+        fp.count = cap;
+        if (fp.next_product.count > cap) fp.next_product.count = cap;
+      }
+    });
+    this.setState({ trees });
   };
 
   handleBurnCountChange = (event, logName) => {
@@ -62,36 +84,26 @@ class TreePlanner extends Component {
     const treeToChangeIndex = trees.findIndex(tree => tree.log.name === logName);
     const logCount = trees[treeToChangeIndex].log.count;
     const countToBurn = (intValue <= logCount ? intValue : logCount);
+    if (countToBurn > trees[treeToChangeIndex].log.countToBurn) {
+      this.capFletchCount(logCount - countToBurn, treeToChangeIndex);
+    }
     trees[treeToChangeIndex].log.countToBurn = countToBurn;
-    trees[treeToChangeIndex].log.fletching_products.forEach((prod, index) => {
-      this.setNewCap(logCount - countToBurn, [treeToChangeIndex, 'log', 'fletching_products', index], 'count')
-    });
     this.setState({ trees })
   };
 
   handleFletchingProductChange = (event, pathToItem, maxPossibleProd) => {
     let intValue = parseInt(event.target.value, 10);
     if (isNaN(intValue)) intValue = 0;
-    if (intValue > maxPossibleProd) intValue = maxPossibleProd;
     const trees = [...this.state.trees];
-    const copyPath = [...pathToItem];
+    const oldValue = returnPathAttr(trees, pathToItem, 'count');
+    if (intValue > maxPossibleProd + oldValue) intValue = maxPossibleProd + oldValue;
     updatePath(trees, pathToItem, 'count', intValue);
-    this.setState({ trees });
-    if (typeof copyPath.find(section => section === 'next_product') === 'undefined') {
-      const childPath = [...copyPath, 'next_product'];
-      this.setNewCap(intValue, childPath, 'count')
+    if (typeof pathToItem.find(section => section === 'next_product') === 'undefined') {  // if this is the parent product
+      const childPath = [...pathToItem, 'next_product'];
+      const childCount = returnPathAttr(trees, childPath, 'count');
+      if (childCount > intValue) updatePath(trees, childPath, 'count', intValue);
     }
-  };
-
-  setNewCap = (cap, pathToItem, attr) => {
-    const trees = [...this.state.trees];
-    const copyPath = [...pathToItem];
-    const currentCount = returnPathAttr(trees, pathToItem, 'count');
-    console.log(cap, currentCount);
-    if (cap < currentCount) {
-      updatePath(trees, copyPath, attr, cap);
-      this.setState({ trees })
-    }
+    this.setState({ trees })
   };
 
   componentDidMount() {
