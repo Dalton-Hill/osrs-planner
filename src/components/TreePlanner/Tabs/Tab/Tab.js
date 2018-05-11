@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const tab = ({ id, name, image_src, click}) => {
+const tab = ({ id, name, image_name, click}) => {
   return (
     <li className={"nav-item"}>
-      <img src={image_src} alt={name} className="nav-link" onClick={() => click(id)}/>
+      <img src={require('../../../../Assets/images/skillIcons/' + image_name)} alt={name} className="nav-link" onClick={() => click(id)}/>
     </li>
   )
 };

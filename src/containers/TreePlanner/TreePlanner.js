@@ -32,9 +32,9 @@ class TreePlanner extends Component {
     this.state = {
       selectedOptionId: 1,
       sections: [
-        {id: 1, name: 'Gathering', body: GatheringBody, image_src: 'https://vignette.wikia.nocookie.net/2007scape/images/f/f4/Woodcutting_icon.png/revision/latest/scale-to-width-down/17?cb=20180424011002'},
-        {id: 2, name: 'Firemaking', body: FiremakingBody, image_src: 'https://vignette.wikia.nocookie.net/2007scape/images/9/9b/Firemaking_icon.png/revision/latest/scale-to-width-down/21?cb=20180424010933'},
-        {id: 3, name: 'Fletching', body: FletchingBody, image_src: 'https://vignette.wikia.nocookie.net/2007scape/images/9/93/Fletching_icon.png/revision/latest/scale-to-width-down/21?cb=20180424011032'}
+        {id: 1, name: 'Gathering', body: GatheringBody, image_name: 'woodcutting_icon.png'},
+        {id: 2, name: 'Firemaking', body: FiremakingBody, image_name: 'Firemaking_icon.png'},
+        {id: 3, name: 'Fletching', body: FletchingBody, image_name: 'Fletching_icon.png'}
       ],
       trees: []
     }
