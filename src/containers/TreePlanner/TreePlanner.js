@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import Tabs from '../../components/TreePlanner/Tabs/Tabs';
 import GatheringBody from '../../components/TreePlanner/Gathering/Body';
 import FiremakingBody from '../../components/TreePlanner/Firemaking/Body';
 import FletchingBody from '../../components/TreePlanner/Fletching/Body';
+import defaultTrees from './trees';
 
 
 const updatePath = (obj, path, attribute, value) => {
@@ -36,7 +36,7 @@ class TreePlanner extends Component {
         {id: 2, name: 'Firemaking', body: FiremakingBody, image_name: 'Firemaking_icon.png'},
         {id: 3, name: 'Fletching', body: FletchingBody, image_name: 'Fletching_icon.png'}
       ],
-      trees: []
+      trees: defaultTrees
     }
   }
   handleSectionClick = (id) => {
@@ -106,19 +106,6 @@ class TreePlanner extends Component {
     this.setState({ trees })
   };
 
-  componentDidMount() {
-    axios.get('https://8y35tqer0g.execute-api.us-east-1.amazonaws.com/dev/tree')
-      .then(resp => {
-        let trees = resp.data.items;
-        trees.sort((tree1, tree2) => {
-          if (tree1.log.woodcutting_xp < tree2.log.woodcutting_xp) return -1;
-          if (tree1.log.woodcutting_xp > tree2.log.woodcutting_xp) return 1;
-          return 0;
-        });
-        this.setState({ trees });
-      })
-      .catch(err => {console.log(err)})
-  }
   render() {
     const Body = this.state.sections.find(({ id }) => id === this.state.selectedOptionId).body;
     return (

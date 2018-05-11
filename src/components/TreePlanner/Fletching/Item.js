@@ -1,14 +1,10 @@
 import React from 'react';
 
 
-const img_style = {height: "30px", width: "30px"};
-
-
 const unpackRequiredPictures = (requiredItems) => {
   if (typeof requiredItems !== 'undefined') {
     return (
-      requiredItems.map((item, index) => <img src={item.image_url} alt={item.name} key={item.name + index}
-      style={img_style}/>)
+      requiredItems.map((item, index) => <img src={require('../../../Assets/images/treePlanner/' + item.image_name)} alt={item.name} key={item.name + index}/>)
     )
   }
 };
@@ -27,12 +23,12 @@ const maxPossibleProduct = (count, requiredItems) => {
 
 
 const item = ({ fletching_product, change }) => {
-  const { image_url, name, xp_reward, count, high_alchemy_value, requiredItems, path } = fletching_product;
+  const { image_name, name, xp_reward, count, high_alchemy_value, requiredItems, path } = fletching_product;
   const maxPossibleProd = maxPossibleProduct(count, requiredItems);
   const high_alch_total = high_alchemy_value * (count);
   return (
     <tr>
-      <td><img src={image_url} alt={name} style={img_style}/>{name}</td>
+      <td><img src={require('../../../Assets/images/treePlanner/' + image_name)} alt={name}/>{name}</td>
       <td><input className={"form-control"} value={maxPossibleProd} readOnly={true}/></td>
       <td><input className={"form-control"} value={count} onChange={(event) => change(event, path, maxPossibleProd)}/></td>
       <td>{unpackRequiredPictures(requiredItems)}</td>
