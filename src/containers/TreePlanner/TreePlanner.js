@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Tabs from '../../components/TreePlanner/Tabs/Tabs';
-import GatheringBody from '../../components/TreePlanner/Gathering/Body';
+import GatheringBody from '../../components/TreePlanner/Gathering/Body/Body';
 import FiremakingBody from '../../components/TreePlanner/Firemaking/Body';
 import FletchingBody from '../../components/TreePlanner/Fletching/Body';
 import defaultTrees from './trees';

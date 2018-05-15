@@ -1,11 +1,16 @@
 import React from 'react';
-import Row from './Item';
+import Row from './Item/Item';
+import ExperienceForm from '../../ExperienceForm/ExperienceForm';
 
 
 const body = ({ trees, handleLogCountChange }) => {
   return (
     <div>
       <h5 className="card-title">Gathering</h5>
+      <ExperienceForm/>
+      <div className="progress">
+        <div className="progress-bar" style={{ width: "10%"}}/>
+      </div>
       <table className={"table"}>
         <thead>
           <tr>
