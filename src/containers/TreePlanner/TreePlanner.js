@@ -4,26 +4,7 @@ import GatheringBody from '../../components/TreePlanner/Gathering/Body';
 import FiremakingBody from '../../components/TreePlanner/Firemaking/Body';
 import FletchingBody from '../../components/TreePlanner/Fletching/Body';
 import defaultTrees from './trees';
-
-
-const updatePath = (obj, path, attribute, value) => {
-  const copyPath = [...path];
-  if (copyPath.length) {
-    updatePath(obj[copyPath.splice(0, 1)], copyPath, attribute, value)
-  } else {
-    obj[attribute] = value
-  }
-};
-
-
-const returnPathAttr = (obj, path, attribute) => {
-  const copyPath = [...path];
-  if (copyPath.length) {
-    return returnPathAttr(obj[copyPath.splice(0, 1)], copyPath, attribute)
-  } else {
-    return obj[attribute]
-  }
-};
+import { updatePath, returnPathAttr } from './utils';
 
 
 class TreePlanner extends Component {
