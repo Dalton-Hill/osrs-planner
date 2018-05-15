@@ -11,7 +11,7 @@ class TreePlanner extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOptionId: 1,
+      activeSectionId: 1,
       sections: [
         {id: 1, name: 'Gathering', body: GatheringBody, image_name: 'woodcutting_icon.png'},
         {id: 2, name: 'Firemaking', body: FiremakingBody, image_name: 'Firemaking_icon.png'},
@@ -21,7 +21,7 @@ class TreePlanner extends Component {
     }
   }
   handleSectionClick = (id) => {
-    this.setState({ selectedOptionId: id})
+    this.setState({ activeSectionId: id})
   };
 
   handleLogCountChange = (event, logName) => {
@@ -88,11 +88,11 @@ class TreePlanner extends Component {
   };
 
   render() {
-    const Body = this.state.sections.find(({ id }) => id === this.state.selectedOptionId).body;
+    const Body = this.state.sections.find(({ id }) => id === this.state.activeSectionId).body;
     return (
       <div className="card text-center">
         <div className="card-header">
-          <Tabs sections={this.state.sections} click={this.handleSectionClick}/>
+          <Tabs sections={this.state.sections} activeSectionId={this.state.activeSectionId} click={this.handleSectionClick}/>
         </div>
         <div className="card-body">
           <Body trees={this.state.trees} handleLogCountChange={this.handleLogCountChange}
