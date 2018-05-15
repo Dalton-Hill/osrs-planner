@@ -4,11 +4,12 @@ import './App.css';
 import Layout from '../hoc/Layout/Layout';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
+
 class App extends Component {
   state = {
     routes: [
-      {description: "TreePlanner", component: TreePlanner},
-      {description: "Herblore", component: null}
+      {description: "TreePlanner", logoName: 'woodcutting_icon.png', component: TreePlanner},
+      {description: "Herblore", logoName: 'Herblore_icon.png', component: null}
     ]
   };
 

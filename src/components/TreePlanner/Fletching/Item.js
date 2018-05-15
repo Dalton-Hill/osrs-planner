@@ -32,7 +32,7 @@ const item = ({ fletching_product, change }) => {
       <td><input className={"form-control"} value={maxPossibleProd} readOnly={true}/></td>
       <td><input className={"form-control"} value={count} onChange={(event) => change(event, path, maxPossibleProd)}/></td>
       <td>{unpackRequiredPictures(requiredItems)}</td>
-      <td>{xp_reward * (count)}</td>
+      <td>{(xp_reward * (count)).toFixed(2)}</td>
       <td>{isNaN(high_alch_total) ? null : high_alch_total}</td>
     </tr>
   )

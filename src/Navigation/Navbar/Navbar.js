@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import * as styles from './styles';
 
 class navbar extends Component {
   state = {
@@ -23,9 +23,15 @@ class navbar extends Component {
           <ul className={"navbar-nav"}>
             {this.props.routes.map((route, index) => {
               const linkClass = index === this.state.activeLinkIndex ? "nav-link active" : "nav-link";
-              return <li className={"nav-item"} key={index}>
-                <Link className={linkClass} to={route.description} onClick={() => this.linkClickHandler(index)}
-                >{route.description}</Link></li>
+              const buttonStyle = index === this.state.activeLinkIndex ? styles.buttonActive : styles.button;
+              return (
+                <li className={"nav-item"} key={index}>
+                  <button style={buttonStyle}>
+                    <Link className={linkClass} to={route.description} onClick={() => this.linkClickHandler(index)}
+                    ><img src={require('../../Assets/images/skillIcons/' + route.logoName)} alt={route.logoName}/></Link>
+                  </button>
+                </li>
+              )
             })}
           </ul>
         </div>
