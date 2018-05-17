@@ -64,7 +64,7 @@ const updateChoppedCountAndXPGained = (state, payload) => {
 
 
 const updateStartingXP = (state, payload) => {
-  let newStartingXP = payload.event.target.value;
+  let newStartingXP = payload.event.target.value.replace(',', '');
   if ( !isNaN(newStartingXP) && !newStartingXP.endsWith('.')) {
     newStartingXP = newStartingXP === '' ? 0 : parseFloat(newStartingXP);
   }
@@ -73,7 +73,7 @@ const updateStartingXP = (state, payload) => {
 
 
 const updateGoalXP = (state, payload) => {
-  let newGoalXP = payload.event.target.value;
+  let newGoalXP = payload.event.target.value.replace(',', '');
   if ( !isNaN(newGoalXP) && !newGoalXP.endsWith('.')) {
     newGoalXP = newGoalXP === '' ? 0 : parseFloat(newGoalXP);
   }
