@@ -6,6 +6,7 @@ import * as actions from './store/actions';
 
 class Woodcutting extends Component {
   render() {
+    console.log(this.props.xpGained);
     return (
       <div className={"card"}>
         <div className={"card-body"}>
@@ -19,6 +20,7 @@ class Woodcutting extends Component {
 
 const mapStateToProps = state => {
   return {
+    xpGained: state.wcReducer.xpGained,
     logs: state.wcReducer.inventory.filter(item => item.type === 'log')
   }
 };

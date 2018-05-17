@@ -10,9 +10,9 @@ const row = ({ log, onChoppedCountChange }) => {
         {log.name}
       </td>
       <td>{log.woodcuttingLevelRequired}</td>
-      <td><input type={'text'} className={"form-control"} value={log.counts.chopped}
+      <td><input type={'text'} className={"form-control"} value={log.countChopped}
                  onChange={(event) => onChoppedCountChange(event, log.name)}/></td>
-      <td>{(log.counts.chopped * log.woodcuttingExperienceRewarded).toFixed(2)}</td>
+      <td>{log.woodcuttingXPGained.toFixed(2)}</td>
     </tr>
   )
 };
