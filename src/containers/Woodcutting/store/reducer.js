@@ -63,10 +63,33 @@ const updateChoppedCountAndXPGained = (state, payload) => {
 };
 
 
+const updateStartingXP = (state, payload) => {
+  let newStartingXP = payload.event.target.value;
+  if ( !isNaN(newStartingXP) && !newStartingXP.endsWith('.')) {
+    newStartingXP = newStartingXP === '' ? 0 : parseFloat(newStartingXP);
+  }
+  return {...state, startingXP: newStartingXP};
+};
+
+
+const updateGoalXP = (state, payload) => {
+  let newGoalXP = payload.event.target.value;
+  if ( !isNaN(newGoalXP) && !newGoalXP.endsWith('.')) {
+    newGoalXP = newGoalXP === '' ? 0 : parseFloat(newGoalXP);
+  }
+  console.log(typeof newGoalXP);
+  return {...state, goalXP: newGoalXP};
+};
+
+
 const reducer = (state = intialState, action) => {
   switch ( action.type ) {
     case actions.UPDATE_CHOPPED_COUNT:
       return updateTotalXPGained(updateChoppedCountAndXPGained(state, action.payload));
+    case actions.UPDATE_STARTING_XP:
+      return updateStartingXP(state, action.payload);
+    case actions.UPDATE_GOAL_XP:
+      return updateGoalXP(state, action.payload);
     default:
       return state
   }
