@@ -2,7 +2,7 @@ import React from 'react';
 import Row from './Row/Row';
 
 
-const skillTable = (props) => {
+const table = (props) => {
   return (
     <table className={"table"}>
       <thead>
@@ -14,11 +14,11 @@ const skillTable = (props) => {
       </tr>
       </thead>
       <tbody>
-      {props.logs.map(log => <Row log={log}/>)}
+      {props.logs.map(log => <Row log={log} key={log.name} onChoppedCountChange={props.onChoppedCountChange}/>)}
       </tbody>
     </table>
   )
 };
 
 
-export default skillTable;
+export default table;

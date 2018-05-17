@@ -1,3 +1,6 @@
+import * as actions from './actions';
+
+
 const intialState = {
   inventory: [
     {
@@ -45,8 +48,29 @@ const intialState = {
   ]
 };
 
+
+const updateChoppedCount = (state, payload) => {
+  let newCount = parseInt(payload.event.target.value);
+  if (isNaN(newCount)) newCount = 0;
+  const newState = {
+    ...state,
+    inventory: [
+      ...state.inventory
+    ]
+  };
+  const logToChange = newState.inventory.find(item => item.name === payload.logName);
+  logToChange.counts.chopped = newCount;
+  return newState;
+};
+
+
 const reducer = (state = intialState, action) => {
-  return state
+  switch ( action.type ) {
+    case actions.UPDATE_CHOPPED_COUNT:
+      return updateChoppedCount(state, action.payload);
+    default:
+      return state
+  }
 };
 
 
