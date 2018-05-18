@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Tabs from '../../components/Inventory/Tabs/Tabs';
+import * as actions from "./store/actions";
 
 
 class Inventory extends Component {
@@ -27,6 +29,7 @@ class Inventory extends Component {
           <Tabs sections={this.state.sections} activeSectionId={this.state.activeSectionId} click={this.handleSectionClick}/>
         </div>
         <div className="card-body">
+          {this.props.logs.map(log => <p>{log.name}</p>)}
         </div>
       </div>
     )
@@ -34,4 +37,18 @@ class Inventory extends Component {
 }
 
 
-export default Inventory;
+const mapStateToProps = state => {
+  return {
+    logs: state.inventory.filter(item => item.type === 'log')
+  }
+};
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpdateCount: (event, itemName, location) => dispatch({type: actions.UPDATE_COUNT, itemName: itemName,
+      location: location, newCount: parseInt(event.target.value, 10)}),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inventory);
