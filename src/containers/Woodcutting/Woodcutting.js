@@ -15,7 +15,7 @@ class Woodcutting extends Component {
           <SkillExperienceForm startingXP={this.props.startingXP} goalXP={this.props.goalXP}
                                onChangeStartingXP={this.props.onChangeStartingXP}
                                onChangeGoalXP={this.props.onChangeGoalXP}/>
-          <SkillProgressBar percent={this.props.startingXP / this.props.goalXP}/>
+          <SkillProgressBar percent={(this.props.startingXP + this.props.xpGained) / this.props.goalXP}/>
           <WoodcuttingTable logs={this.props.logs} onChoppedCountChange={this.props.onChoppedCountChange}/>
         </div>
       </div>
