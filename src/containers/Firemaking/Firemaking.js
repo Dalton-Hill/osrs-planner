@@ -7,8 +7,10 @@ class Firemaking extends Component {
   render() {
     return (
       <div className={"card"}>
-        <div className={"card-body"}>
+        <div className={"card-header"}>
           <h2 className={"card-title"}>Firemaking</h2>
+        </div>
+        <div className={"card-body"}>
           <SkillExperienceForm startingXP={0} goalXP={0}
                                onChangeStartingXP={0}
                                onChangeGoalXP={0}/>

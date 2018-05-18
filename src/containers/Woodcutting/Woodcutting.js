@@ -10,8 +10,10 @@ class Woodcutting extends Component {
   render() {
     return (
       <div className={"card"}>
-        <div className={"card-body"}>
+        <div className={"card-header"}>
           <h2 className={"card-title"}>Woodcutting</h2>
+        </div>
+        <div className={"card-body"}>
           <SkillExperienceForm startingXP={this.props.startingXP} goalXP={this.props.goalXP}
                                onChangeStartingXP={this.props.onChangeStartingXP}
                                onChangeGoalXP={this.props.onChangeGoalXP}/>
