@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Tabs from '../../components/Inventory/Tabs/Tabs';
-import * as actions from "./store/actions";
+import * as actions from "../../store/actions";
 
 
 class Inventory extends Component {

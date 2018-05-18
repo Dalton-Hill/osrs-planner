@@ -8,16 +8,18 @@ import * as actions from './store/actions';
 
 class Woodcutting extends Component {
   render() {
+    const startingXP = null;
+    const goalXP = null;
+    const gainedXP = null;
+
     return (
       <div className={"card"}>
         <div className={"card-header"}>
           <h2 className={"card-title"}>Woodcutting</h2>
         </div>
         <div className={"card-body"}>
-          <SkillExperienceForm startingXP={this.props.startingXP} goalXP={this.props.goalXP}
-                               onChangeStartingXP={this.props.onChangeStartingXP}
-                               onChangeGoalXP={this.props.onChangeGoalXP}/>
-          <SkillProgressBar percent={(this.props.startingXP + this.props.xpGained) / this.props.goalXP}/>
+          <SkillExperienceForm startingXP={startingXP} goalXP={goalXP}/>
+          <SkillProgressBar percent={(startingXP + gainedXP) / goalXP}/>
           <WoodcuttingTable logs={this.props.logs} onChoppedCountChange={this.props.onChoppedCountChange}/>
         </div>
       </div>
@@ -25,22 +27,19 @@ class Woodcutting extends Component {
   }
 }
 
+
 const mapStateToProps = state => {
   return {
-    startingXP: state.wcReducer.startingXP,
-    goalXP: state.wcReducer.goalXP,
-    xpGained: state.wcReducer.xpGained,
-    logs: state.wcReducer.inventory.filter(item => item.type === 'log')
+    logs: state.inventory.filter(item => item.type === 'log')
   }
 };
 
 
-const matchDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    onChoppedCountChange: (event, logName) => dispatch({type: actions.UPDATE_CHOPPED_COUNT, payload: {event: event, logName: logName}}),
-    onChangeStartingXP: (event) => dispatch({type: actions.UPDATE_STARTING_XP, payload: {event: event}}),
-    onChangeGoalXP: (event) => dispatch({type: actions.UPDATE_GOAL_XP, payload: {event: event}})
+    onUpdateCount: (event, itemName, location) => dispatch({type: actions.UPDATE_COUNT, itemName: itemName,
+      location: location, newCount: parseInt(event.target.value, 10)}),
   }
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(Woodcutting);
+export default connect(mapStateToProps, mapDispatchToProps)(Woodcutting);
