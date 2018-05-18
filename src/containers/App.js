@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
-import TreePlanner from './TreePlanner/TreePlanner';
 import Woodcutting from './Woodcutting/Woodcutting';
+import Firemaking from './Firemaking/Firemaking';
 import Layout from '../hoc/Layout/Layout';
 import './App.css';
 
@@ -9,9 +9,9 @@ import './App.css';
 class App extends Component {
   state = {
     routes: [
+      {description: "Inventory", logoName: 'Inventory.png', component: null},
       {description: "Woodcutting", logoName: 'woodcutting_icon.png', component: Woodcutting},
-      {description: "TreePlanner", logoName: 'woodcutting_icon.png', component: TreePlanner},
-      {description: "Herblore", logoName: 'Herblore_icon.png', component: null}
+      {description: "Firemaking", logoName: 'Firemaking_icon.png', component: Firemaking}
     ]
   };
 

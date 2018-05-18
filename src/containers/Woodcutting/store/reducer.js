@@ -48,7 +48,7 @@ const updateTotalXPGained = (state) => {
 
 
 const updateChoppedCountAndXPGained = (state, payload) => {
-  let newCount = parseInt(payload.event.target.value);
+  let newCount = parseInt(payload.event.target.value, 10);
   if (isNaN(newCount)) newCount = 0;
   const newState = {
     ...state,
