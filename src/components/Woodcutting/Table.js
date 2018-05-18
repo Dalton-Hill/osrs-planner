@@ -5,7 +5,7 @@ import Row from './Row/Row';
 const table = (props) => {
   return (
     <table className={"table"}>
-      <thead>
+      <thead className={"thead-light"}>
       <tr>
         <th>Description</th>
         <th>LvL</th>

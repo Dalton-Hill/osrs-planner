@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import WoodcuttingTable from '../../components/Woodcutting/Table';
-import SkillProgressBar from '../../UI/Progress/SkillProgressBar';
+import SkillProgressBar from '../../UI/Progress/SkillProgressBar/SkillProgressBar';
 import SkillExperienceForm from '../../Forms/SkillExperienceForm/SkillExperienceForm';
 import * as actions from './store/actions';
 
