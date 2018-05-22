@@ -28,7 +28,7 @@ class navbar extends Component {
                 <li className={"nav-item"} key={index}>
                   <button style={buttonStyle}>
                     <Link className={linkClass} to={route.description} onClick={() => this.linkClickHandler(index)}
-                    ><img src={require('../../Assets/images/skillIcons/' + route.logoName)} alt={route.logoName}/></Link>
+                    ><img src={require('../../Assets/images/icons/' + route.logoName)} alt={route.logoName}/></Link>
                   </button>
                 </li>
               )
