@@ -29,7 +29,7 @@ class Inventory extends Component {
           <Tabs sections={this.state.sections} activeSectionId={this.state.activeSectionId} click={this.handleSectionClick}/>
         </div>
         <div className="card-body">
-          {this.props.logs.map(log => <p>{log.name}</p>)}
+          {this.props.logs.map(log => <p key={log.name}>{log.name}</p>)}
         </div>
       </div>
     )
