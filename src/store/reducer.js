@@ -1,6 +1,6 @@
 import * as actions from './actions';
 
-const intialState = {
+const initialState = {
   inventory: [
     {
       name: 'Maple Logs',
@@ -39,7 +39,7 @@ const intialState = {
 };
 
 
-const reducer = (state = intialState, action) => {
+const reducer = (state = initialState, action) => {
   switch ( action.type ) {
     case actions.UPDATE_COUNT:
       return actions.updateCount(state, action.itemName, action.location, action.newCount);
