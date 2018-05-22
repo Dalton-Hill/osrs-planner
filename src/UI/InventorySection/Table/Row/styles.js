@@ -1,5 +1,5 @@
 export const img = {
-  paddingRight: "5px",
+  paddingRight: "5px"
 };
 
 export const description = {

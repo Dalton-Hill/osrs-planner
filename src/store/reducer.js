@@ -7,10 +7,10 @@ const intialState = {
       imageName: 'Maple_logs.png',
       type: 'log',
       counts: [
-        {location: 'inventory', count: 0, isPositive: true},
-        {location: 'woodcutting', count: 0, isPositive: true, xpPer: 100, levelRequired: 45},
-        {location: 'firemaking', count: 0, isPositive: false},
-        {location: 'fletching', count: 0, isPositive: false},
+        {location: 'inventory', count: 0, isPositive: true, imageName: "Inventory.png"},
+        {location: 'woodcutting', count: 0, isPositive: true, xpPer: 100, levelRequired: 45, imageName: "woodcutting_icon.png"},
+        {location: 'firemaking', count: 0, isPositive: false, imageName: "Firemaking_icon.png"},
+        {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"},
       ]
     },
     {
@@ -18,10 +18,10 @@ const intialState = {
       imageName: 'Yew_logs.png',
       type: 'log',
       counts: [
-        {location: 'inventory', count: 0, isPositive: true},
-        {location: 'woodcutting', count: 0, isPositive: true, xpPer: 175, levelRequired: 60},
-        {location: 'firemaking', count: 0, isPositive: false},
-        {location: 'fletching', count: 0, isPositive: false},
+        {location: 'inventory', count: 0, isPositive: true, imageName: "Inventory.png"},
+        {location: 'woodcutting', count: 0, isPositive: true, xpPer: 175, levelRequired: 60, imageName: "woodcutting_icon.png"},
+        {location: 'firemaking', count: 0, isPositive: false, imageName: "Firemaking_icon.png"},
+        {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"},
       ]
     },
     {
@@ -29,10 +29,10 @@ const intialState = {
       imageName: 'Magic_logs.png',
       type: 'log',
       counts: [
-        {location: 'inventory', count: 0, isPositive: true},
-        {location: 'woodcutting', count: 0, isPositive: true, xpPer: 250, levelRequired: 75},
-        {location: 'firemaking', count: 0, isPositive: false},
-        {location: 'fletching', count: 0, isPositive: false},
+        {location: 'inventory', count: 0, isPositive: true, imageName: "Inventory.png"},
+        {location: 'woodcutting', count: 0, isPositive: true, xpPer: 250, levelRequired: 75, imageName: "woodcutting_icon.png"},
+        {location: 'firemaking', count: 0, isPositive: false, imageName: "Firemaking_icon.png"},
+        {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"},
       ]
     }
   ]

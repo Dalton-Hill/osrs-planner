@@ -10,6 +10,7 @@ const table = (props) => {
         <th>Description</th>
         <th>Amount</th>
         <th>Usage</th>
+        <th>Available</th>
       </tr>
       </thead>
       <tbody>
