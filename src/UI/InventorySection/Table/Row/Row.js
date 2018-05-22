@@ -8,6 +8,7 @@ const row = (props) => {
   return (
     <tr>
       <td style={styles.description}>
+        <img src={require('../../../../Assets/images/items/' + props.item.imageName)} alt={props.item.name} style={styles.img}/>
         {props.item.name}
       </td>
       <td style={styles.amount}><input type={'text'} className={"form-control"} value={inventoryCount.count}
