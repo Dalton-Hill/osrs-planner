@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Tabs from '../../components/Inventory/Tabs/Tabs';
+import InventorySection from '../../UI/InventorySection/InventorySection';
 import * as actions from "../../store/actions";
 
 
@@ -10,27 +11,36 @@ class Inventory extends Component {
     this.state = {
       activeSectionId: 1,
       sections: [
-        {id: 1, name: 'Logs', body: null, imageName: 'Logs.png'},
-        {id: 2, name: 'Ores', body: null, imageName: 'Coal.png'},
-        {id: 3, name: 'Bars', body: null, imageName: 'Iron_bar.png'}
+        {id: 1, name: 'Logs', itemTypes: ['logs'], imageName: 'Logs.png'},
+        {id: 2, name: 'Ores', itemTypes: [], imageName: 'Coal.png'},
+        {id: 3, name: 'Bars', itemTypes: [], imageName: 'Iron_bar.png'}
       ]
     }
   }
+
+  unpackItemTypes = () => {
+    const activeSection = this.state.sections.find(section => section.id === this.state.activeSectionId);
+    let items = [];
+    activeSection.itemTypes.forEach(itemType => {
+      items = items.concat(...this.props[itemType]);
+    });
+    return items;
+  };
 
   handleSectionClick = (id) => {
     this.setState({ activeSectionId: id})
   };
 
   render() {
+
     return (
       <div className="card">
         <div className="card-header">
           <h2>Inventory</h2>
           <Tabs sections={this.state.sections} activeSectionId={this.state.activeSectionId} click={this.handleSectionClick}/>
         </div>
-        <div className="card-body">
-          {this.props.logs.map(log => <p key={log.name}>{log.name}</p>)}
-        </div>
+        <InventorySection items={this.unpackItemTypes()}
+                          onUpdateCount={this.props.onUpdateCount}/>
       </div>
     )
   }
@@ -46,8 +56,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateCount: (event, itemName, location) => dispatch({type: actions.UPDATE_COUNT, itemName: itemName,
-      location: location, newCount: parseInt(event.target.value, 10)}),
+    onUpdateCount: (event, itemName) => dispatch({type: actions.UPDATE_COUNT, itemName: itemName,
+      location: 'inventory', newCount: parseInt(event.target.value, 10)}),
   }
 };
 
