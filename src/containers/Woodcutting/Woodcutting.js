@@ -25,11 +25,13 @@ class Woodcutting extends Component {
   };
 
   render() {
-    const gainedXP = this.props.logs.reduce((totalXP, log) => {
-      const woodcuttingCount = log.counts.find(count => count.location === 'woodcutting');
-      return totalXP + woodcuttingCount.count * woodcuttingCount.xpPer;
-    });
-    console.log(gainedXP);
+    let gainedXP = 0;
+    if (typeof this.props.logs !== "undefined") {
+      gainedXP = this.props.logs.reduce((totalXP, log) => {
+        const woodcuttingCount = log.counts.find(count => count.location === 'woodcutting');
+        return totalXP + woodcuttingCount.count * woodcuttingCount.xpPer;
+      }, 0);
+    }
 
     return (
       <div className={"card"}>

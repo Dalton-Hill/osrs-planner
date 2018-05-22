@@ -10,7 +10,7 @@ export const updateCount = (state, itemName, location, newCount) => {
         return {
           ...item,
           counts: [
-            item.counts.map(count => {
+            ...item.counts.map(count => {
               if (count.location !== location) return count;
               return {
                 ...count,
