@@ -31,5 +31,35 @@ export const items = [
       {location: 'firemaking', count: 0, isPositive: false, xpPer: 303.8 , levelRequired: 75, imageName: "Firemaking_icon.png"},
       {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"},
     ]
+  },
+  {
+    name: 'Maple longbow (u)',
+    imageName: 'Maple_longbow_(u).png',
+    type: 'fletching product',
+    counts: [
+      {location: 'inventory', count: 0, isPositive: true, imageName: "Inventory.png"},
+      {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"},
+      {fromItemName: 'Maple Logs', fromItemLocation: 'fletching'}
+    ]
+  },
+  {
+    name: 'Yew longbow (u)',
+    imageName: 'Yew_longbow_(u).png',
+    type: 'fletching product',
+    counts: [
+      {location: 'inventory', count: 0, isPositive: true, imageName: "Inventory.png"},
+      {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"},
+      {fromItemName: 'Yew Logs', fromItemLocation: 'fletching'}
+    ]
+  },
+  {
+    name: 'Magic longbow (u)',
+    imageName: 'Magic_longbow_(u).png',
+    type: 'fletching product',
+    counts: [
+      {location: 'inventory', count: 0, isPositive: true, imageName: "Inventory.png"},
+      {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"},
+      {fromItemName: 'Magic Logs', fromItemLocation: 'fletching'}
+    ]
   }
 ];
