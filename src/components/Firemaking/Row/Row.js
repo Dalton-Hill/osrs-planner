@@ -9,7 +9,7 @@ const row = ({ log, onUpdateCount }) => {
   return (
     <tr>
       <td>
-        <img src={require('../../../Assets/images/items/' + log.imageName)} alt={log.name} style={styles.img}/>
+        <img src={require('../../../Assets/images/' + log.imageName)} alt={log.name} style={styles.img}/>
         {log.name}
       </td>
       <td>{firemakingCount.levelRequired}</td>

@@ -6,7 +6,7 @@ const tab = ({ id, name, image_name, active, click}) => {
   const imgClass = active ? 'nav-link active' : 'nav-link';
   return (
     <li className={"nav-item"}>
-      <img src={require('../../../../Assets/images/icons/' + image_name)} alt={name} className={imgClass} onClick={() => click(id)}
+      <img src={require('../../../../Assets/images/' + image_name)} alt={name} className={imgClass} onClick={() => click(id)}
       style={styles.img}/>
     </li>
   )
