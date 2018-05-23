@@ -10,10 +10,16 @@ export const getParentItem = item => {
   }
 };
 
-export const getCountFromItem = (itemName, location) => {
+export const getCountFromItemLocation = (itemName, location) => {
   const state = store.getState();
   const item = state.inventory.find(item => item.name === itemName);
   return item.counts.find(count => count.location === location).count;
+};
+
+export const getImageNameFromItemLocation = (itemName, location) => {
+  const state = store.getState();
+  const item = state.inventory.find(item => item.name === itemName);
+  return item.counts.find(count => count.location === location).imageName;
 };
 
 
@@ -30,7 +36,7 @@ export const calculateAvailable = (item) => {
   return item.counts.reduce((available, count) => {
     let numberToAdd = 0;
     if (isCountLinkedToItem(count)) {
-      numberToAdd = getCountFromItem(count.fromItemName, count.fromItemLocation)
+      numberToAdd = getCountFromItemLocation(count.fromItemName, count.fromItemLocation)
     } else {
       numberToAdd = getCountFromSelf(count);
     }

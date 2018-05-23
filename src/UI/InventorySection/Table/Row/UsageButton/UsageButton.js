@@ -1,13 +1,13 @@
 import React from 'react';
 import * as styles from "./styles";
-import { getImageNameFromItem, isCountLinkedToItem, getCountFromItem } from '../../../../../store/utils';
+import { isCountLinkedToItem, getCountFromItemLocation, getImageNameFromItemLocation } from '../../../../../store/utils';
 
 
 const updateForeignCount = (count) => {
   const copyCount = {...count};
-  copyCount.imageName = getImageNameFromItem(count.fromItemName);
   copyCount.isPositive = true;
-  copyCount.count = getCountFromItem(count.fromItemName, count.fromItemLocation);
+  copyCount.count = getCountFromItemLocation(count.fromItemName, count.fromItemLocation);
+  copyCount.imageName = getImageNameFromItemLocation(count.fromItemName, count.fromItemLocation);
   return copyCount;
 };
 
