@@ -1,5 +1,5 @@
 import * as actions from './actions';
-import { items } from './items';
+import { items } from './initialState/items';
 
 
 const initialState = {
