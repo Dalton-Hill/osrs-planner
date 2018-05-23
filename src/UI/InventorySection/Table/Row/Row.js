@@ -1,14 +1,7 @@
 import React from 'react';
 import * as styles from './styles';
 import UsageButton from './UsageButton/UsageButton';
-
-
-const calculateAvailable = (item) => {
-  return item.counts.reduce((available, count) => {
-    const countMultiplier = count.isPositive ? 1 : -1;
-    return available + (countMultiplier * count.count)
-  }, 0)
-};
+import { calculateAvailable } from '../../../../store/utils';
 
 
 const row = (props) => {

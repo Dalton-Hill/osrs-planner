@@ -11,7 +11,7 @@ const row = ({ log, onUpdateCount }) => {
         <img src={require('../../../Assets/images/items/' + log.imageName)} alt={log.name} style={styles.img}/>
         {log.name}
       </td>
-      <td>{woodcuttingCount.xpPer}</td>
+      <td>{woodcuttingCount.levelRequired}</td>
       <td><input type={'text'} className={"form-control"} value={woodcuttingCount.count}
                  onChange={(event) => onUpdateCount(event, log.name, location)}/></td>
       <td>{(woodcuttingCount.count * woodcuttingCount.xpPer).toFixed(2)}</td>
