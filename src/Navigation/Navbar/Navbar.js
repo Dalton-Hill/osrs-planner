@@ -23,13 +23,13 @@ class navbar extends Component {
           <ul className={"navbar-nav"}>
             {this.props.routes.map((route, index) => {
               const linkClass = index === this.state.activeLinkIndex ? "nav-link active" : "nav-link";
-              const buttonStyle = index === this.state.activeLinkIndex ? styles.buttonActive : styles.button;
+              const linkStyle = index === this.state.activeLinkIndex ? styles.linkActive : null;
               return (
                 <li className={"nav-item"} key={index}>
-                  <button style={buttonStyle}>
-                    <Link className={linkClass} to={route.description} onClick={() => this.linkClickHandler(index)}
-                    ><img src={require('../../Assets/images/' + route.logoName)} alt={route.logoName}/></Link>
-                  </button>
+                  <Link className={linkClass} to={route.description} onClick={() => this.linkClickHandler(index)} style={linkStyle}>
+                    <img src={require('../../Assets/images/' + route.logoName)} alt={route.logoName}
+                    style={styles.image}/>
+                  </Link>
                 </li>
               )
             })}
