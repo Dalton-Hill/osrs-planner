@@ -12,7 +12,7 @@ class Inventory extends Component {
       activeSectionId: 1,
       sections: [
         {id: 1, name: 'Logs', itemTypes: ['logs'], imageName: 'Logs.png'},
-        {id: 2, name: 'Fletching Products', itemTypes: ['fletchingProducts'], imageName: 'Longbow.png'}
+        {id: 2, name: 'Fletching.js Products', itemTypes: ['fletchingProducts'], imageName: 'Longbow.png'}
       ]
     }
   }

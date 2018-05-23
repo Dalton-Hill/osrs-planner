@@ -2,6 +2,13 @@ import store from './store';
 
 export const isCountLinkedToItem = count => typeof count.fromItemName !== "undefined";
 
+export const getParentItem = item => {
+  const state = store.getState();
+  const dependantCount = item.counts.find(count => isCountLinkedToItem(count));
+  if (typeof dependantCount !== "undefined") {
+    return state.inventory.find(item => item.name === dependantCount.fromItemName);
+  }
+};
 
 export const getCountFromItem = (itemName, location) => {
   const state = store.getState();

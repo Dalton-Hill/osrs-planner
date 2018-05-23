@@ -1,7 +1,13 @@
 export const UPDATE_COUNT = 'UPDATE_COUNT';
 
 
-export const updateCount = (state, itemName, location, newCount) => {
+const isCountMatch = (count, location, productName) => {
+  if (count.location !== location) return false;
+  return !(typeof productName !== "undefined" && count.productName !== productName);
+};
+
+
+export const updateCount = ({ state, itemName, location, productName, newCount }) => {
   if (isNaN(newCount) || !newCount) newCount = 0;
   return {
     ...state,
@@ -12,7 +18,7 @@ export const updateCount = (state, itemName, location, newCount) => {
           ...item,
           counts: [
             ...item.counts.map(count => {
-              if (count.location !== location) return count;
+              if (!isCountMatch(count, location, productName)) return count;
               return {
                 ...count,
                 count: newCount

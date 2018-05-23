@@ -12,7 +12,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch ( action.type ) {
     case actions.UPDATE_COUNT:
-      return actions.updateCount(state, action.itemName, action.location, action.newCount);
+      return actions.updateCount({ state, itemName: action.itemName, location: action.location, productName: action.productName, newCount: action.newCount });
     default:
       return state
   }
