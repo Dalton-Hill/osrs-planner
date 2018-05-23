@@ -1,14 +1,18 @@
 import store from './store';
 
-const isCountLinkedToItem = count => typeof count.fromItemName !== "undefined";
+export const isCountLinkedToItem = count => typeof count.fromItemName !== "undefined";
 
 
-const getCountFromItem = (itemName, location) => {
+export const getCountFromItem = (itemName, location) => {
   const state = store.getState();
-  console.log(state);
-  console.log(itemName, location);
   const item = state.inventory.find(item => item.name === itemName);
   return item.counts.find(count => count.location === location).count;
+};
+
+
+export const getImageNameFromItem = (itemName) => {
+  const state = store.getState();
+  return state.inventory.find(item => item.name === itemName).imageName;
 };
 
 

@@ -12,8 +12,9 @@ class Inventory extends Component {
       activeSectionId: 1,
       sections: [
         {id: 1, name: 'Logs', itemTypes: ['logs'], imageName: 'Logs.png'},
-        {id: 2, name: 'Ores', itemTypes: [], imageName: 'Coal.png'},
-        {id: 3, name: 'Bars', itemTypes: [], imageName: 'Iron_bar.png'}
+        {id: 2, name: 'Logs', itemTypes: ['fletchingProducts'], imageName: 'Logs.png'},
+        {id: 3, name: 'Ores', itemTypes: [], imageName: 'Coal.png'},
+        {id: 4, name: 'Bars', itemTypes: [], imageName: 'Iron_bar.png'}
       ]
     }
   }
@@ -22,7 +23,7 @@ class Inventory extends Component {
     const activeSection = this.state.sections.find(section => section.id === this.state.activeSectionId);
     let items = [];
     activeSection.itemTypes.forEach(itemType => {
-      items = items.concat(...this.props[itemType]);
+      if (typeof this.props[itemType] !== "undefined") items = items.concat(...this.props[itemType]);
     });
     return items;
   };
@@ -49,7 +50,8 @@ class Inventory extends Component {
 
 const mapStateToProps = state => {
   return {
-    logs: state.inventory.filter(item => item.type === 'log')
+    logs: state.inventory.filter(item => item.type === 'log'),
+    fletchingProducts: state.inventory.filter(item => item.type === 'fletching product'),
   }
 };
 

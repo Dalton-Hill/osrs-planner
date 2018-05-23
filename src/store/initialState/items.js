@@ -38,8 +38,8 @@ export const items = [
     type: 'fletching product',
     counts: [
       {location: 'inventory', count: 0, isPositive: true, imageName: "Inventory.png"},
-      {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"},
-      {fromItemName: 'Maple Logs', fromItemLocation: 'fletching'}
+      {fromItemName: 'Maple Logs', fromItemLocation: 'fletching', imageName: 'Maple_logs.png'},
+      {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"}
     ]
   },
   {
@@ -48,8 +48,8 @@ export const items = [
     type: 'fletching product',
     counts: [
       {location: 'inventory', count: 0, isPositive: true, imageName: "Inventory.png"},
-      {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"},
-      {fromItemName: 'Yew Logs', fromItemLocation: 'fletching'}
+      {fromItemName: 'Yew Logs', fromItemLocation: 'fletching', imageName: 'Yew_logs.png'},
+      {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"}
     ]
   },
   {
@@ -58,8 +58,8 @@ export const items = [
     type: 'fletching product',
     counts: [
       {location: 'inventory', count: 0, isPositive: true, imageName: "Inventory.png"},
-      {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"},
-      {fromItemName: 'Magic Logs', fromItemLocation: 'fletching'}
+      {fromItemName: 'Magic Logs', fromItemLocation: 'fletching', imageName: 'Magic_logs.png'},
+      {location: 'fletching', count: 0, isPositive: false, imageName: "Fletching_icon.png"}
     ]
   }
 ];

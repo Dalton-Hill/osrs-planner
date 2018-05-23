@@ -17,9 +17,9 @@ const row = (props) => {
                  onChange={(event) => props.onUpdateCount(event, props.item.name)}/></td>
       <td>
         <div className={"btn-group"} role={"group"}>
-          {props.item.counts.map(count => {
+          {props.item.counts.map((count, index) => {
             return (
-              <UsageButton key={count.location} count={count} item={props.item}/>
+              <UsageButton key={index} count={count} item={props.item}/>
             )
           })}
         </div>
