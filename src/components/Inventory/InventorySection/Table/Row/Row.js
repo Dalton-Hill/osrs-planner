@@ -16,7 +16,7 @@ const groupUsagePerLocation = counts => {
 
 
 const row = (props) => {
-  const location = 'inventory';
+  const location = 'items';
   const inventoryCount = props.item.counts.find(count => count.location === location);
   const counts = groupUsagePerLocation(props.item.counts);
   return (

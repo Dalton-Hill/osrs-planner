@@ -58,7 +58,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onUpdateCount: (event, itemName) => dispatch({type: actions.UPDATE_COUNT, itemName: itemName,
-      location: 'inventory', newCount: parseInt(event.target.value, 10)}),
+      location: 'items', newCount: parseInt(event.target.value, 10)}),
   }
 };
 
