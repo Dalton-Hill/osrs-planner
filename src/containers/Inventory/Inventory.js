@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Tabs from '../../components/Inventory/Tabs/Tabs';
-import InventorySection from '../../UI/InventorySection/InventorySection';
+import InventorySection from '../../components/Inventory/InventorySection/InventorySection';
 import * as actions from "../../store/actions";
 
 

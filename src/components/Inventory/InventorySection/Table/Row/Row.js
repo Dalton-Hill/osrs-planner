@@ -1,7 +1,7 @@
 import React from 'react';
 import * as styles from './styles';
 import UsageButton from './UsageButton/UsageButton';
-import { calculateAvailable } from '../../../../store/utils';
+import { calculateAvailable } from '../../../../../store/utils';
 
 
 const row = (props) => {
@@ -10,7 +10,7 @@ const row = (props) => {
   return (
     <tr>
       <td style={styles.description}>
-        <img src={require('../../../../Assets/images/' + props.item.imageName)} alt={props.item.name} style={styles.img}/>
+        <img src={require('../../../../../Assets/images/' + props.item.imageName)} alt={props.item.name} style={styles.img}/>
         {props.item.name}
       </td>
       <td style={styles.amount}><input type={'text'} className={"form-control"} value={inventoryCount.count}
