@@ -23,12 +23,6 @@ export const getImageNameFromItemLocation = (itemName, location) => {
 };
 
 
-export const getImageNameFromItem = (itemName) => {
-  const state = store.getState();
-  return state.inventory.find(item => item.name === itemName).imageName;
-};
-
-
 const getCountFromSelf = count => count.count * (count.isPositive ? 1 : -1);
 
 

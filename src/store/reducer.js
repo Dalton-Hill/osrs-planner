@@ -1,10 +1,10 @@
 import * as actions from './actions';
-import { items } from './initialState/items';
+import inventory from './initialState/inventory/inventory';
 
 
 const initialState = {
   inventory: [
-    ...items
+    ...inventory
   ]
 };
 
