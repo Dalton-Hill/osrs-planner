@@ -12,7 +12,7 @@ class Inventory extends Component {
       activeSectionId: 1,
       sections: [
         {id: 1, name: 'Logs', itemTypes: ['logs'], imageName: 'Logs.png'},
-        {id: 2, name: 'Fletching.js Products', itemTypes: ['fletchingProducts'], imageName: 'Longbow.png'}
+        {id: 2, name: 'Fletching.js Products', itemTypes: ['fletchingSecondaries', 'fletchingProducts'], imageName: 'Longbow.png'}
       ]
     }
   }
@@ -50,6 +50,7 @@ const mapStateToProps = state => {
   return {
     logs: state.inventory.filter(item => item.type === 'log'),
     fletchingProducts: state.inventory.filter(item => item.type === 'fletching product'),
+    fletchingSecondaries: state.inventory.filter(item => item.type === 'fletching secondary'),
   }
 };
 
