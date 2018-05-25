@@ -5,7 +5,8 @@ const fletchingSecondaries = [
   {
     name: bowString,
     imageName: 'Bow_string.png',
-    type: fletchingSecondary
+    type: fletchingSecondary,
+    count: 0
   }
 ];
 

@@ -14,7 +14,7 @@ class Inventory extends Component {
       activeSectionIndex: 0,
       sections: [
         {name: 'Logs', itemTypes: [log], imageName: 'Logs.png'},
-        {name: 'Fletching Products and Secondaries', itemTypes: [fletchingProduct, fletchingSecondary], imageName: 'Longbow.png'},
+        {name: 'Fletching Products and Secondaries', itemTypes: [fletchingSecondary, fletchingProduct], imageName: 'Longbow.png'},
       ]
     }
   }
