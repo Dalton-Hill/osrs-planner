@@ -1,6 +1,5 @@
 import store from './store';
 import allSkills from './initialState/skills/allSkills';
-import {firemaking} from "./initialState/skills/allskillNames";
 
 
 export const getItemsByType = (...types) => {
