@@ -14,7 +14,8 @@ const table = (props) => {
       </tr>
       </thead>
       <tbody>
-      {props.logs.map(log => <Row log={log} key={log.name} onUpdateCount={props.onUpdateCount}/>)}
+      {props.woodcuttingActions.map(action => <Row action={action} key={action.name}
+                                                   onUpdateActionCount={props.onUpdateActionCount}/>)}
       </tbody>
     </table>
   )

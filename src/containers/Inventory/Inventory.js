@@ -4,7 +4,6 @@ import Tabs from '../../components/Inventory/Tabs/Tabs';
 import InventorySection from '../../components/Inventory/InventorySection/InventorySection';
 import * as actions from "../../store/actions";
 import { log, fletchingProduct, fletchingSecondary } from '../../store/initialState/items/allTypeNames';
-import { getItemsByType } from '../../store/utils';
 
 
 class Inventory extends Component {
@@ -13,11 +12,17 @@ class Inventory extends Component {
     this.state = {
       activeSectionIndex: 0,
       sections: [
-        {name: 'Logs', itemTypes: [log], imageName: 'Logs.png'},
-        {name: 'Fletching Products and Secondaries', itemTypes: [fletchingSecondary, fletchingProduct], imageName: 'Longbow.png'},
+        {name: 'Logs', props: ['logs'], imageName: 'Logs.png'},
+        {name: 'Fletching Products and Secondaries', props: ['fletchingSecondaries', 'fletchingProducts'], imageName: 'Longbow.png'},
       ]
     }
   }
+
+  unpackItemsForProps = (...propNames) => {
+    return propNames.reduce((allItems, propName) => {
+      return allItems.concat(this.props[propName])
+    }, []);
+  };
 
   handleSectionClick = (index) => {
     this.setState({ activeSectionIndex: index})
@@ -31,7 +36,7 @@ class Inventory extends Component {
           <h2>Inventory</h2>
           <Tabs sections={this.state.sections} activeSectionIndex={this.state.activeSectionIndex} click={this.handleSectionClick}/>
         </div>
-        <InventorySection items={getItemsByType(...this.state.sections[this.state.activeSectionIndex].itemTypes)}
+        <InventorySection items={this.unpackItemsForProps(...this.state.sections[this.state.activeSectionIndex].props)}
                           onUpdateCount={this.props.onUpdateCount}/>
       </div>
     )
@@ -39,11 +44,19 @@ class Inventory extends Component {
 }
 
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    onUpdateCount: (event, itemName) => dispatch({type: actions.UPDATE_COUNT, itemName: itemName,
-      location: 'items', newCount: parseInt(event.target.value, 10)}),
+    logs: state.inventory.filter(item => item.type === log),
+    fletchingProducts: state.inventory.filter(item => item.type === fletchingProduct),
+    fletchingSecondaries: state.inventory.filter(item => item.type === fletchingSecondary),
   }
 };
 
-export default connect(null, mapDispatchToProps)(Inventory);
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpdateCount: (event, item) => dispatch({type: actions.UPDATE_COUNT, item, event}),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inventory);

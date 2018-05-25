@@ -1,20 +1,23 @@
 import React from 'react';
 import * as styles from './styles';
+import { woodcutting } from "../../../store/initialState/skills/allskillNames";
 
 
-const row = ({ log, onUpdateCount }) => {
-  const location = 'woodcutting';
-  const woodcuttingCount = log.counts.find(count => count.location === location);
+const row = ({ action, onUpdateActionCount }) => {
+  const skillToDisplay = woodcutting;
+  const levelRequired = action.skillsRequired.find(skill => skill.name === skillToDisplay).level;
+  const xpPerAction = action.skillExperienceRewards.find(skill => skill.name === skillToDisplay).amount;
+  const totalXPGained = xpPerAction * action.count;
   return (
     <tr>
       <td>
-        <img src={require('../../../Assets/images/' + log.imageName)} alt={log.name} style={styles.img}/>
-        {log.name}
+        <img src={require('../../../Assets/images/' + action.imageName)} alt={action.name} style={styles.img}/>
+        {action.name}
       </td>
-      <td>{woodcuttingCount.levelRequired}</td>
-      <td><input type={'text'} className={"form-control"} value={woodcuttingCount.count}
-                 onChange={(event) => onUpdateCount(event, log.name, location)}/></td>
-      <td>{(woodcuttingCount.count * woodcuttingCount.xpPer).toFixed(2)}</td>
+      <td>{levelRequired}</td>
+      <td><input type={'text'} className={"form-control"} value={action.count}
+                 onChange={(event) => onUpdateActionCount(event, action)}/></td>
+      <td>{totalXPGained.toFixed(2)}</td>
     </tr>
   )
 };

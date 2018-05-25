@@ -14,7 +14,6 @@ const groupActionsBySkillAndIsPositive = item => {
     else groupedNegativeSkill.count += action.count;
   });
 
-
   const positiveSkillActions = actionsThatRewardedItem(item);
   const groupedPositiveSkillActions = [];
   positiveSkillActions.forEach(action => {
@@ -24,7 +23,6 @@ const groupActionsBySkillAndIsPositive = item => {
     else groupedPositiveSkill.count += action.count;
   });
 
-  console.log(groupedNegativeSkillActions);
   return ({groupedNegativeSkillActions, groupedPositiveSkillActions})
 };
 
@@ -39,7 +37,7 @@ const row = (props) => {
         {props.item.name}
       </td>
       <td style={styles.amount}><input type={'text'} className={"form-control"} value={props.item.count}
-                                       onChange={(event) => props.onUpdateCount(event, props.item.name)}/></td>
+                                       onChange={(event) => props.onUpdateCount(event, props.item)}/></td>
       <td>
         <div className={"btn-group"} role={"group"}>
           {groupedPositiveSkillActions.map(skill => <UsageButton key={skill.name} skill={skill} isPositive={true}/>)}

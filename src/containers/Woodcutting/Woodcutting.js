@@ -4,6 +4,8 @@ import WoodcuttingTable from '../../components/Woodcutting/Table';
 import SkillProgressBar from '../../UI/Progress/SkillProgressBar/SkillProgressBar';
 import SkillExperienceForm from '../../Forms/SkillExperienceForm/SkillExperienceForm';
 import * as actions from '../../store/actions';
+import { woodcutting } from '../../store/initialState/skills/allskillNames';
+import { primarySkillForAction } from '../../store/utils';
 
 
 class Woodcutting extends Component {
@@ -25,11 +27,12 @@ class Woodcutting extends Component {
   };
 
   render() {
+    const skillToDisplay = woodcutting;
     let gainedXP = 0;
-    if (typeof this.props.logs !== "undefined") {
-      gainedXP = this.props.logs.reduce((totalXP, log) => {
-        const woodcuttingCount = log.counts.find(count => count.location === 'woodcutting');
-        return totalXP + woodcuttingCount.count * woodcuttingCount.xpPer;
+    if (typeof this.props.woodcuttingActions !== "undefined") {
+      gainedXP = this.props.woodcuttingActions.reduce((totalXP, action) => {
+        const xpPerAction = action.skillExperienceRewards.find(skill => skill.name === skillToDisplay).amount;
+        return xpPerAction * action.count + totalXP
       }, 0);
     }
 
@@ -43,7 +46,7 @@ class Woodcutting extends Component {
                                onChangeStartingXP={this.onChangeStartingXP}
                                onChangeGoalXP={this.onChangeGoalXP}/>
           <SkillProgressBar percent={(this.state.startingXP + gainedXP) / this.state.goalXP}/>
-          <WoodcuttingTable logs={this.props.logs} onUpdateCount={this.props.onUpdateCount}/>
+          <WoodcuttingTable woodcuttingActions={this.props.woodcuttingActions} onUpdateActionCount={this.props.onUpdateActionCount}/>
         </div>
       </div>
     )
@@ -53,15 +56,14 @@ class Woodcutting extends Component {
 
 const mapStateToProps = state => {
   return {
-    logs: state.inventory.filter(item => item.type === 'log')
+    woodcuttingActions: state.actions.filter(action => primarySkillForAction(action).name === woodcutting)
   }
 };
 
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateCount: (event, itemName, location) => dispatch({type: actions.UPDATE_COUNT, itemName: itemName,
-      location: location, newCount: parseInt(event.target.value, 10)}),
+    onUpdateActionCount: (event, rsAction) => dispatch({type: actions.UPDATE_ACTION_COUNT, rsAction, event}),
   }
 };
 
