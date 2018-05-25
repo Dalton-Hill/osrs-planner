@@ -24,6 +24,13 @@ export const actionsThatRewardedItem = item => {
 };
 
 
+export const calculateItemCountAfterActions = item => {
+  let count = item.count;
+  count = actionsThatRequiredItem(item).reduce((count, action) => {return count - action.count}, count);
+  return actionsThatRewardedItem(item).reduce((count, action) => {return count + action.count}, count);
+};
+
+
 export const primarySkillForAction = (action) => {
   const primarySkill = action.skillExperienceRewards.reduce((prevReward, reward) => {
     if (reward.amount > prevReward.amount) return reward;

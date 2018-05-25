@@ -1,7 +1,7 @@
 import React from 'react';
 import * as styles from './styles';
 import UsageButton from './UsageButton/UsageButton';
-import { actionsThatRequiredItem, actionsThatRewardedItem, primarySkillForAction } from '../../../../../store/utils';
+import { actionsThatRequiredItem, actionsThatRewardedItem, primarySkillForAction, calculateItemCountAfterActions } from '../../../../../store/utils';
 
 
 const groupActionsBySkillAndIsPositive = item => {
@@ -46,7 +46,7 @@ const row = (props) => {
           {groupedNegativeSkillActions.map(skill => <UsageButton key={skill.name} skill={skill} isPositive={false}/>)}
         </div>
       </td>
-      <td></td>
+      <td>{calculateItemCountAfterActions(props.item)}</td>
     </tr>
   )
 };
