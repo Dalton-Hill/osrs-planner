@@ -4,7 +4,7 @@ import logs from './types/logs';
 import misc from './types/misc';
 
 
-const items = [
+const allItems = [
   ...logs,
   ...fletchingProducts,
   ...fletchingSecondaries,
@@ -12,4 +12,4 @@ const items = [
 ];
 
 
-export default items;
+export default allItems;

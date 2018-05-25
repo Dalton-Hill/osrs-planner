@@ -1,10 +1,12 @@
 import { ashes } from "../allItemNames";
+import { misc as miscType } from "../allTypeNames";
+
 
 const misc = [
   {
     name: ashes,
     imageName: 'Ashes.png',
-    type: 'misc',
+    type: miscType,
     count: 0
   }
 ];

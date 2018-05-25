@@ -1,73 +1,50 @@
+import { fletchingProduct } from "../allTypeNames";
+import {
+  mapleLongbowUnstrung,
+  mapleLongbow,
+  yewLongbowUnstrung,
+  yewLongbow,
+  magicLongbowUnstrung,
+  magicLongbow
+} from "../allItemNames";
+
+
 const fletchingProducts = [
   {
-    name: 'Maple longbow (u)',
+    name: mapleLongbowUnstrung,
     imageName: 'Maple_longbow_(u).png',
-    type: 'fletching product',
-    counts: [
-      {location: 'items', count: 0, isPositive: true, imageName: "Inventory.png"},
-      {fromItemName: 'Maple Logs', fromItemLocation: 'fletching', imageName: 'Maple_logs.png'},
-      {location: 'fletching', count: 0, isPositive: false, xpPer: 58.2 , levelRequired: 55, imageName: "Fletching_icon.png", productName: "Maple longbow"}
-    ],
-    requiredSecondaryItems: []
+    type: fletchingProduct,
+    count: 0
   },
   {
-    name: 'Maple longbow',
+    name: mapleLongbow,
     imageName: 'Maple_longbow.png',
-    type: 'fletching product',
-    counts: [
-      {location: 'items', count: 0, isPositive: true, imageName: "Inventory.png"},
-      {fromItemName: 'Maple longbow (u)', fromItemLocation: 'fletching', imageName: 'Maple_longbow_(u).png'}
-    ],
-    requiredSecondaryItems: [
-      {name: 'Bow string', numberRequired: 1}
-    ]
+    type: fletchingProduct,
+    count: 0
   },
   {
-    name: 'Yew longbow (u)',
+    name: yewLongbowUnstrung,
     imageName: 'Yew_longbow_(u).png',
-    type: 'fletching product',
-    counts: [
-      {location: 'items', count: 0, isPositive: true, imageName: "Inventory.png"},
-      {fromItemName: 'Yew Logs', fromItemLocation: 'fletching', imageName: 'Yew_logs.png'},
-      {location: 'fletching', count: 0, isPositive: false, xpPer: 75, levelRequired: 70, imageName: "Fletching_icon.png", productName: "Yew longbow"}
-    ],
-    requiredSecondaryItems: []
+    type: fletchingProduct,
+    count: 0
   },
   {
-    name: 'Yew longbow',
+    name: yewLongbow,
     imageName: 'Yew_longbow.png',
-    type: 'fletching product',
-    counts: [
-      {location: 'items', count: 0, isPositive: true, imageName: "Inventory.png"},
-      {fromItemName: 'Yew longbow (u)', fromItemLocation: 'fletching', imageName: 'Yew_longbow_(u).png'}
-    ],
-    requiredSecondaryItems: [
-      {name: 'Bow string', numberRequired: 1}
-    ]
+    type: fletchingProduct,
+    count: 0
   },
   {
-    name: 'Magic longbow (u)',
+    name: magicLongbowUnstrung,
     imageName: 'Magic_longbow_(u).png',
-    type: 'fletching product',
-    counts: [
-      {location: 'items', count: 0, isPositive: true, imageName: "Inventory.png"},
-      {fromItemName: 'Magic Logs', fromItemLocation: 'fletching', imageName: 'Magic_logs.png'},
-      {location: 'fletching', count: 0, isPositive: false, xpPer: 91.5, levelRequired: 85, imageName: "Fletching_icon.png", productName: "Magic longbow"}
-    ],
-    requiredSecondaryItems: []
+    type: fletchingProduct,
+    count: 0
   },
   {
-    name: 'Magic longbow',
+    name: magicLongbow,
     imageName: 'Magic_longbow.png',
-    type: 'fletching product',
-    skillToMake: 'fletching',
-    counts: [
-      {location: 'items', count: 0, isPositive: true, imageName: "Inventory.png"},
-      {fromItemName: 'Magic longbow (u)', fromItemLocation: 'fletching', imageName: 'Magic_longbow_(u).png'}
-    ],
-    requiredSecondaryItems: [
-      {name: 'Bow string', numberRequired: 1}
-    ]
+    type: fletchingProduct,
+    count: 0
   }
 ];
 
