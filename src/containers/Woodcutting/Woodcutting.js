@@ -26,16 +26,19 @@ class Woodcutting extends Component {
     this.setState({ goalXP: newGoalXP})
   };
 
-  render() {
+  calculateGainedXP = () => {
     const skillToDisplay = woodcutting;
-    let gainedXP = 0;
     if (typeof this.props.woodcuttingActions !== "undefined") {
-      gainedXP = this.props.woodcuttingActions.reduce((totalXP, action) => {
+      return this.props.woodcuttingActions.reduce((totalXP, action) => {
         const xpPerAction = action.skillExperienceRewards.find(skill => skill.name === skillToDisplay).amount;
         return xpPerAction * action.count + totalXP
       }, 0);
     }
+    return 0;
+  };
 
+  render() {
+    const gainedXP = this.calculateGainedXP();
     return (
       <div className={"card"}>
         <div className={"card-header"}>

@@ -7,15 +7,17 @@ const table = (props) => {
     <table className={"table"}>
       <thead className={"thead-light"}>
       <tr>
-        <th>Description</th>
+        <th>Action</th>
         <th>LvL</th>
-        <th>Available</th>
-        <th>Burned</th>
+        <th>Items Required Per Action</th>
+        <th>Items Available</th>
+        <th>Burn</th>
         <th>XP</th>
       </tr>
       </thead>
       <tbody>
-      {props.logs.map(log => <Row log={log} key={log.name} onUpdateCount={props.onUpdateCount}/>)}
+        {props.firemakingActions.map(action => <Row action={action} key={action.name}
+                                                   onUpdateActionCount={props.onUpdateActionCount}/>)}
       </tbody>
     </table>
   )

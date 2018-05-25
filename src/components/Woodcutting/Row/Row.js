@@ -15,8 +15,9 @@ const row = ({ action, onUpdateActionCount }) => {
         {action.name}
       </td>
       <td>{levelRequired}</td>
-      <td><input type={'text'} className={"form-control"} value={action.count}
-                 onChange={(event) => onUpdateActionCount(event, action)}/></td>
+      <td>
+        <input type={'text'} className={"form-control"} value={action.count} onChange={(event) => onUpdateActionCount(event, action)}/>
+      </td>
       <td>{totalXPGained.toFixed(2)}</td>
     </tr>
   )

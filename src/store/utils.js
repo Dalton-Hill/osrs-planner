@@ -12,6 +12,19 @@ export const getItemsByType = (...types) => {
 };
 
 
+export const getItemsRequired = (action) => {
+  const state = store.getState();
+  return action.itemsRequired.map(item => state.inventory.find(itemX => itemX.name === item.name))
+};
+
+
+export const countNeededPerAction = (action, item) => {
+  const actionItem = action.itemsRequired.find(itemReq => itemReq.name === item.name);
+  if (typeof actionItem !== 'undefined') return actionItem.count;
+  return 0;
+};
+
+
 export const actionsThatRequiredItem = item => {
   const state = store.getState();
   return state.actions.filter(action => typeof action.itemsRequired.find(itemReq => itemReq.name === item.name) !== 'undefined')

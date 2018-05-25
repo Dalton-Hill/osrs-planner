@@ -7,7 +7,7 @@ const table = (props) => {
     <table className={"table"}>
       <thead className={"thead-light"}>
       <tr>
-        <th>Description</th>
+        <th>Action</th>
         <th>LvL</th>
         <th>Chopped</th>
         <th>XP</th>
