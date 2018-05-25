@@ -7,6 +7,7 @@ const actions = [
   {
     name: chopMapleTree,
     imageName: 'Maple_tree.png',
+    count: 0,
     skillsRequired: [
       {name: woodcutting, level: 45}
     ],
@@ -21,6 +22,7 @@ const actions = [
   {
     name: chopYewTree,
     imageName: 'Yew_tree.png',
+    count: 0,
     skillsRequired: [
       {name: woodcutting, level: 60}
     ],
@@ -35,6 +37,7 @@ const actions = [
   {
     name: chopMagicTree,
     imageName: 'Magic_tree.png',
+    count: 0,
     skillsRequired: [
       {name: woodcutting, level: 75}
     ],

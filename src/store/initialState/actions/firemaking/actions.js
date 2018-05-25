@@ -7,6 +7,7 @@ const actions = [
   {
     name: burnMapleLog,
     imageName: 'Maple_logs.png',
+    count: 0,
     skillsRequired: [
       {name: firemaking, level: 45}
     ],
@@ -23,6 +24,7 @@ const actions = [
   {
     name: burnYewLog,
     imageName: 'Yew_logs.png',
+    count: 0,
     skillsRequired: [
       {name: firemaking, level: 60}
     ],
@@ -39,6 +41,7 @@ const actions = [
   {
     name: burnMagicLog,
     imageName: 'Magic_logs.png',
+    count: 0,
     skillsRequired: [
       {name: firemaking, level: 75}
     ],

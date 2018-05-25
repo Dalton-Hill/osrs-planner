@@ -3,28 +3,20 @@ import { connect } from 'react-redux';
 import Tabs from '../../components/Inventory/Tabs/Tabs';
 import InventorySection from '../../components/Inventory/InventorySection/InventorySection';
 import * as actions from "../../store/actions";
+import { log } from '../../store/initialState/items/allTypeNames';
+import { getItemsByType } from '../../store/utils';
 
 
 class Inventory extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSectionId: 1,
+      activeSectionIndex: 0,
       sections: [
-        {id: 1, name: 'Logs', itemTypes: ['logs'], imageName: 'Logs.png'},
-        {id: 2, name: 'Fletching.js Products', itemTypes: ['fletchingSecondaries', 'fletchingProducts'], imageName: 'Longbow.png'}
+        {name: 'Logs', itemTypes: [log], imageName: 'Logs.png'}
       ]
     }
   }
-
-  unpackItemTypes = () => {
-    const activeSection = this.state.sections.find(section => section.id === this.state.activeSectionId);
-    let items = [];
-    activeSection.itemTypes.forEach(itemType => {
-      if (typeof this.props[itemType] !== "undefined") items = items.concat(...this.props[itemType]);
-    });
-    return items;
-  };
 
   handleSectionClick = (id) => {
     this.setState({ activeSectionId: id})
@@ -38,7 +30,7 @@ class Inventory extends Component {
           <h2>Inventory</h2>
           <Tabs sections={this.state.sections} activeSectionId={this.state.activeSectionId} click={this.handleSectionClick}/>
         </div>
-        <InventorySection items={this.unpackItemTypes()}
+        <InventorySection items={getItemsByType(...this.state.sections[this.state.activeSectionIndex].itemTypes)}
                           onUpdateCount={this.props.onUpdateCount}/>
       </div>
     )
@@ -48,9 +40,7 @@ class Inventory extends Component {
 
 const mapStateToProps = state => {
   return {
-    logs: state.inventory.filter(item => item.type === 'log'),
-    fletchingProducts: state.inventory.filter(item => item.type === 'fletching product'),
-    fletchingSecondaries: state.inventory.filter(item => item.type === 'fletching secondary'),
+    logs: state.inventory.filter(item => item.type === log)
   }
 };
 

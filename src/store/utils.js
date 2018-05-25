@@ -1,4 +1,38 @@
 import store from './store';
+import allSkills from './initialState/skills/allSkills';
+import {firemaking} from "./initialState/skills/allskillNames";
+
+
+export const getItemsByType = (...types) => {
+  const state = store.getState();
+  let itemsToReturn = [];
+  types.forEach(type => {
+    itemsToReturn = itemsToReturn.concat(...state.inventory.filter(item => item.type === type))
+  });
+  return itemsToReturn;
+};
+
+
+export const actionsThatRequiredItem = item => {
+  const state = store.getState();
+  return state.actions.filter(action => typeof action.itemsRequired.find(itemReq => itemReq.name === item.name) !== 'undefined')
+};
+
+
+export const actionsThatRewardedItem = item => {
+  const state = store.getState();
+  return state.actions.filter(action => typeof action.itemsRewarded.find(itemRew => itemRew.name === item.name) !== 'undefined')
+};
+
+
+export const primarySkillForAction = (action) => {
+  const primarySkill = action.skillExperienceRewards.reduce((prevReward, reward) => {
+    if (reward.amount > prevReward.amount) return reward;
+    return prevReward
+  }, {name: null, amount: 0});
+  return allSkills.find(skill => skill.name === primarySkill.name);
+};
+
 
 export const isCountLinkedToItem = count => typeof count.fromItemName !== "undefined";
 

@@ -7,14 +7,14 @@ const table = (props) => {
     <table className={"table"}>
       <thead className={"thead-light"}>
       <tr>
-        <th>Description</th>
+        <th>Item</th>
         <th>Amount</th>
-        <th>Usage</th>
-        <th>Available</th>
+        <th>Actions</th>
+        <th>Amount After Actions</th>
       </tr>
       </thead>
       <tbody>
-      {props.items.map(item => <Row item={item} key={item.name} onUpdateCount={props.onUpdateCount}/>)}
+        {props.items.map(item => <Row item={item} key={item.name} onUpdateCount={props.onUpdateCount}/>)}
       </tbody>
     </table>
   )

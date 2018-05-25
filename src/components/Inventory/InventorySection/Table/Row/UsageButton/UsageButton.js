@@ -1,27 +1,16 @@
 import React from 'react';
 import * as styles from "./styles";
-import { isCountLinkedToItem, getCountFromItemLocation, getImageNameFromItemLocation } from '../../../../../../store/utils';
-
-
-const updateForeignCount = (count) => {
-  const copyCount = {...count};
-  copyCount.isPositive = true;
-  copyCount.count = getCountFromItemLocation(count.fromItemName, count.fromItemLocation);
-  copyCount.imageName = getImageNameFromItemLocation(count.fromItemName, count.fromItemLocation);
-  return copyCount;
-};
+import { primarySkillForAction } from '../../../../../../store/utils';
 
 
 const usageButton = (props) => {
-  let count = props.count;
-  if (isCountLinkedToItem(count)) count = updateForeignCount(count);
-
-  const badgeClass = count.isPositive ? "badge badge-success" : "badge badge-danger";
+  const badgeClass = props.isPositive ? "badge badge-success" : "badge badge-danger";
+  const primarySkill = primarySkillForAction(props.action);
   return (
     <button className={"btn btn-outline-info"}>
-      <img src={require('../../../../../../Assets/images/' + count.imageName)} alt={props.item.name}
+      <img src={require('../../../../../../Assets/images/' + primarySkill.imageName)} alt={props.action.name}
            style={styles.usageButtonImage}/>
-      <span className={badgeClass} style={styles.badge}>{count.count}</span>
+      <span className={badgeClass} style={styles.badge}>{props.action.count}</span>
     </button>
   )
 };

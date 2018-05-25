@@ -1,10 +1,14 @@
 import * as actions from './actions';
 import allItems from './initialState/items/allItems';
+import allActions from './initialState/actions/allActions';
 
 
 const initialState = {
   inventory: [
     ...allItems
+  ],
+  actions: [
+    ...allActions
   ]
 };
 

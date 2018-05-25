@@ -25,6 +25,7 @@ const actions = [
   {
     name: fletchMapleLongbowUnstrung,
     imageName: 'Maple_longbow_(u).png',
+    count: 0,
     skillsRequired: [
       {name: fletching, level: 55}
     ],
@@ -41,6 +42,7 @@ const actions = [
   {
     name: fletchMapleLongbow,
     imageName: 'Maple_longbow.png',
+    count: 0,
     skillsRequired: [
       {name: fletching, level: 55}
     ],
@@ -58,6 +60,7 @@ const actions = [
   {
     name: fletchYewLongbowUnstrung,
     imageName: 'Yew_longbow_(u).png',
+    count: 0,
     skillsRequired: [
       {name: fletching, level: 70}
     ],
@@ -74,6 +77,7 @@ const actions = [
   {
     name: fletchYewLongbow,
     imageName: 'Yew_longbow.png',
+    count: 0,
     skillsRequired: [
       {name: fletching, level: 70}
     ],
@@ -91,6 +95,7 @@ const actions = [
   {
     name: fletchMagicLongbowUnstrung,
     imageName: 'Magic_longbow_(u).png',
+    count: 0,
     skillsRequired: [
       {name: fletching, level: 85}
     ],
@@ -107,6 +112,7 @@ const actions = [
   {
     name: fletchMagicLongbow,
     imageName: 'Magic_longbow.png',
+    count: 0,
     skillsRequired: [
       {name: fletching, level: 85}
     ],
