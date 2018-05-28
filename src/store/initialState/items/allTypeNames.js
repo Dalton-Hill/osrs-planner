@@ -1,4 +1,6 @@
 export const log = 'Log';
+export const potionDose = 'Potion Dose';
+export const herbTar = 'Herb Tar';
 export const grimyHerb = 'Grimy Herb';
 export const cleanHerb = 'Clean Herb';
 export const herbloreSecondary = 'Herblore Secondary';
