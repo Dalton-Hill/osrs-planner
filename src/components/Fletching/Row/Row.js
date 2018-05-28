@@ -1,23 +1,28 @@
 import React from 'react';
 import * as styles from './styles';
-import { getParentItem } from '../../../store/utils';
+import {fletching} from "../../../store/initialState/skills/allskillNames";
+import ItemsAvailableGroup from '../../../UI/ItemsAvailableGroup/ItemsAvailableGroup';
+import ItemsRequiredGroup from '../../../UI/ItemsRequiredGroup/ItemsRequiredGroup';
 
 
-const row = ({ fletchingProduct, onUpdateCount }) => {
-  const location = 'fletching';
-  const parentItem = getParentItem(fletchingProduct);
-  const fletchingCount = parentItem.counts.find(count => count.productName === fletchingProduct.name);
+const row = ({ action, onUpdateActionCount }) => {
+  const skillToDisplay = fletching;
+  const levelRequired = action.skillsRequired.find(skill => skill.name === skillToDisplay).level;
+  const xpPerAction = action.skillExperienceRewards.find(skill => skill.name === skillToDisplay).amount;
+  const totalXPGained = xpPerAction * action.count;
   return (
     <tr>
       <td>
-        <img src={require('../../../Assets/images/' + fletchingProduct.imageName)} alt={fletchingProduct.name} style={styles.img}/>
-        {fletchingProduct.name}
+        <img src={require('../../../Assets/images/' + action.imageName)} alt={action.name} style={styles.img}/>
+        {action.name}
       </td>
-      <td>{fletchingCount.levelRequired}</td>
-      <td>Items!</td>
-      <td><input type={'text'} className={"form-control"} value={fletchingCount.count}
-                 onChange={(event) => onUpdateCount(event, parentItem.name, location, fletchingCount.productName)}/></td>
-      <td>{(fletchingCount.count * fletchingCount.xpPer).toFixed(2)}</td>
+      <td>{levelRequired}</td>
+      <td><ItemsRequiredGroup action={action}/></td>
+      <td><ItemsAvailableGroup action={action}/></td>
+      <td>
+        <input type={'text'} className={"form-control"} value={action.count} onChange={(event) => onUpdateActionCount(event, action)}/>
+      </td>
+      <td>{totalXPGained.toFixed(2)}</td>
     </tr>
   )
 };

@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import FletchingTable from '../../components/Fletching/Table';
 import SkillProgressBar from '../../UI/Progress/SkillProgressBar/SkillProgressBar';
 import SkillExperienceForm from '../../Forms/SkillExperienceForm/SkillExperienceForm';
-import { getParentItem } from '../../store/utils';
+import {primarySkillForAction} from '../../store/utils';
 import * as actions from '../../store/actions';
+import {fletching} from "../../store/initialState/skills/allskillNames";
 
 
 class Fletching extends Component {
@@ -25,16 +26,19 @@ class Fletching extends Component {
     this.setState({ goalXP: newGoalXP})
   };
 
-  render() {
-    let gainedXP = 0;
-    if (typeof this.props.fletchingProducts !== "undefined") {
-      gainedXP = this.props.fletchingProducts.reduce((totalXP, fletchingProduct) => {
-        const parentItem = getParentItem(fletchingProduct);
-        const fletchingProductCount = parentItem.counts.find(count => count.productName === fletchingProduct.name);
-        return totalXP + fletchingProductCount.count * fletchingProductCount.xpPer;
+  calculateGainedXP = () => {
+    const skillToDisplay = fletching;
+    if (typeof this.props.fletchingActions !== "undefined") {
+      return this.props.fletchingActions.reduce((totalXP, action) => {
+        const xpPerAction = action.skillExperienceRewards.find(skill => skill.name === skillToDisplay).amount;
+        return xpPerAction * action.count + totalXP
       }, 0);
     }
+    return 0;
+  };
 
+  render() {
+    const gainedXP = this.calculateGainedXP();
     return (
       <div className={"card"}>
         <div className={"card-header"}>
@@ -45,7 +49,7 @@ class Fletching extends Component {
                                onChangeStartingXP={this.onChangeStartingXP}
                                onChangeGoalXP={this.onChangeGoalXP}/>
           <SkillProgressBar percent={(this.state.startingXP + gainedXP) / this.state.goalXP}/>
-          <FletchingTable fletchingProducts={this.props.fletchingProducts} onUpdateCount={this.props.onUpdateCount}/>
+          <FletchingTable fletchingActions={this.props.fletchingActions} onUpdateActionCount={this.props.onUpdateActionCount}/>
         </div>
       </div>
     )
@@ -55,24 +59,14 @@ class Fletching extends Component {
 
 const mapStateToProps = state => {
   return {
-    fletchingProducts: state.inventory.filter(item => item.type === 'fletching product')
+    fletchingActions: state.actions.filter(action => primarySkillForAction(action).name === fletching)
   }
 };
 
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateCount: (event, itemName, location, productName) => {
-      return (
-        dispatch(
-          {
-            type: actions.UPDATE_COUNT,
-            itemName: itemName,
-            location: location,
-            productName: productName,
-            newCount: parseInt(event.target.value, 10)})
-      )
-    },
+    onUpdateActionCount: (event, rsAction) => dispatch({type: actions.UPDATE_ACTION_COUNT, rsAction, event}),
   }
 };
 

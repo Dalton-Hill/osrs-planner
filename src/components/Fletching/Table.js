@@ -7,15 +7,16 @@ const table = (props) => {
     <table className={"table"}>
       <thead className={"thead-light"}>
       <tr>
-        <th>Description</th>
+        <th>Action</th>
         <th>LvL</th>
-        <th>Available</th>
+        <th>Items Required Per Action</th>
+        <th>Items Available</th>
         <th>Make</th>
         <th>XP</th>
       </tr>
       </thead>
       <tbody>
-      {props.fletchingProducts.map(fletchingProduct => <Row fletchingProduct={fletchingProduct} key={fletchingProduct.name} onUpdateCount={props.onUpdateCount}/>)}
+        {props.fletchingActions.map(fletchingAction => <Row action={fletchingAction} key={fletchingAction.name} onUpdateActionCount={props.onUpdateActionCount}/>)}
       </tbody>
     </table>
   )
