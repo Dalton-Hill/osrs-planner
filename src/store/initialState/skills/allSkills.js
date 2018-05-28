@@ -1,4 +1,4 @@
-import { woodcutting, firemaking, fletching } from "./allskillNames";
+import {woodcutting, firemaking, fletching, herblore} from "./allskillNames";
 
 
 const allSkills = [
@@ -13,6 +13,10 @@ const allSkills = [
   {
     name: fletching,
     imageName: 'Fletching_icon.png'
+  },
+  {
+    name: herblore,
+    imageName: 'Herblore_icon.png'
   },
 ];
 

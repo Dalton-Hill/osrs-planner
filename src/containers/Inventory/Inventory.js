@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import Tabs from '../../components/Inventory/Tabs/Tabs';
 import InventorySection from '../../components/Inventory/InventorySection/InventorySection';
 import * as actions from "../../store/actions";
-import { log, fletchingProduct, fletchingSecondary } from '../../store/initialState/items/allTypeNames';
+import {
+  log,
+  fletchingProduct,
+  fletchingSecondary,
+  grimyHerb,
+  cleanHerb
+} from '../../store/initialState/items/allTypeNames';
 
 
 class Inventory extends Component {
@@ -14,6 +20,8 @@ class Inventory extends Component {
       sections: [
         {name: 'Logs', props: ['logs'], imageName: 'Logs.png'},
         {name: 'Fletching Products and Secondaries', props: ['fletchingSecondaries', 'fletchingProducts'], imageName: 'Longbow.png'},
+        {name: 'Grimy Herbs', props: ['grimyHerbs'], imageName: 'Grimy_guam_leaf.png'},
+        {name: 'Clean Herbs', props: ['cleanHerbs'], imageName: 'Guam_leaf.png'},
       ]
     }
   }
@@ -49,6 +57,8 @@ const mapStateToProps = state => {
     logs: state.inventory.filter(item => item.type === log),
     fletchingProducts: state.inventory.filter(item => item.type === fletchingProduct),
     fletchingSecondaries: state.inventory.filter(item => item.type === fletchingSecondary),
+    grimyHerbs: state.inventory.filter(item => item.type === grimyHerb),
+    cleanHerbs: state.inventory.filter(item => item.type === cleanHerb),
   }
 };
 
