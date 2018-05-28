@@ -8,7 +8,8 @@ import {
   fletchingProduct,
   fletchingSecondary,
   grimyHerb,
-  cleanHerb
+  cleanHerb,
+  herbloreSecondary
 } from '../../store/initialState/items/allTypeNames';
 
 
@@ -22,6 +23,7 @@ class Inventory extends Component {
         {name: 'Fletching Products and Secondaries', props: ['fletchingSecondaries', 'fletchingProducts'], imageName: 'Longbow.png'},
         {name: 'Grimy Herbs', props: ['grimyHerbs'], imageName: 'Grimy_guam_leaf.png'},
         {name: 'Clean Herbs', props: ['cleanHerbs'], imageName: 'Guam_leaf.png'},
+        {name: 'Herblore Secondaries', props: ['herbloreSecondaries'], imageName: 'Limpwurt_root.png'},
       ]
     }
   }
@@ -59,6 +61,7 @@ const mapStateToProps = state => {
     fletchingSecondaries: state.inventory.filter(item => item.type === fletchingSecondary),
     grimyHerbs: state.inventory.filter(item => item.type === grimyHerb),
     cleanHerbs: state.inventory.filter(item => item.type === cleanHerb),
+    herbloreSecondaries: state.inventory.filter(item => item.type === herbloreSecondary),
   }
 };
 
