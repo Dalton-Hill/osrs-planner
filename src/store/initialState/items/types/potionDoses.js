@@ -23,6 +23,7 @@ import {
   superRestoreDose,
   superStrengthDose, zamorakDose,
 } from "../allItemNames";
+import {sortItemsByName} from "../utils";
 
 
 const potionDoses = [
@@ -245,4 +246,4 @@ const potionDoses = [
 ];
 
 
-export default potionDoses;
+export default sortItemsByName(potionDoses);

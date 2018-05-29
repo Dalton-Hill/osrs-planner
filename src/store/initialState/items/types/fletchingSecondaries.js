@@ -1,5 +1,6 @@
 import { fletchingSecondary } from "../allTypeNames";
 import { bowString } from "../allItemNames";
+import {sortItemsByName} from "../utils";
 
 const fletchingSecondaries = [
   {
@@ -11,4 +12,4 @@ const fletchingSecondaries = [
 ];
 
 
-export default fletchingSecondaries;
+export default sortItemsByName(fletchingSecondaries);

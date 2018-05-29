@@ -1,5 +1,6 @@
 import { herbTar } from "../allTypeNames";
 import {guamTar, harralanderTar, marrentillTar, tarrominTar} from "../allItemNames";
+import {sortItemsByName} from "../utils";
 
 
 const herbTars = [
@@ -30,4 +31,4 @@ const herbTars = [
 ];
 
 
-export default herbTars;
+export default sortItemsByName(herbTars);

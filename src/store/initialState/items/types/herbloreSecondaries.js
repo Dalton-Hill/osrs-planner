@@ -32,6 +32,7 @@ import {
   zulrahsScales,
   crushedSuperiorDragonBones,
 } from "../allItemNames";
+import {sortItemsByName} from "../utils";
 
 
 const herbloreSecondaries = [
@@ -224,10 +225,4 @@ const herbloreSecondaries = [
 ];
 
 
-export default herbloreSecondaries.sort((a, b) => {
-  const aName = a.name.toUpperCase();
-  const bName = b.name.toUpperCase();
-  if (aName < bName) return -1;
-  else if (aName > bName) return 1;
-  return 0;
-});
+export default sortItemsByName(herbloreSecondaries);

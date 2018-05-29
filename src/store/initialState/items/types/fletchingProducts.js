@@ -7,6 +7,7 @@ import {
   magicLongbowUnstrung,
   magicLongbow
 } from "../allItemNames";
+import {sortItemsByName} from "../utils";
 
 
 const fletchingProducts = [
@@ -49,4 +50,4 @@ const fletchingProducts = [
 ];
 
 
-export default fletchingProducts;
+export default sortItemsByName(fletchingProducts);

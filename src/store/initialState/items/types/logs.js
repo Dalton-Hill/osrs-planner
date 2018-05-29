@@ -1,6 +1,6 @@
 import { mapleLogs, yewLogs, magicLogs } from "../allItemNames";
 import { log } from '../allTypeNames';
-
+import { sortItemsByName } from '../utils';
 
 const logs = [
   {
@@ -24,4 +24,4 @@ const logs = [
 ];
 
 
-export default logs;
+export default sortItemsByName(logs);

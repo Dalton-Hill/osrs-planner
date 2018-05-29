@@ -15,6 +15,7 @@ import {
   grimyToadflax,
   grimyTorstol
 } from "../allItemNames";
+import {sortItemsByName} from "../utils";
 
 
 const grimyHerbs = [
@@ -105,4 +106,4 @@ const grimyHerbs = [
 ];
 
 
-export default grimyHerbs;
+export default sortItemsByName(grimyHerbs);

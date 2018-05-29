@@ -1,5 +1,6 @@
 import { ashes } from "../allItemNames";
 import { misc as miscType } from "../allTypeNames";
+import {sortItemsByName} from "../utils";
 
 
 const misc = [
@@ -12,4 +13,4 @@ const misc = [
 ];
 
 
-export default misc;
+export default sortItemsByName(misc);

@@ -15,6 +15,7 @@ import {
   toadflax,
   torstol
 } from "../allItemNames";
+import {sortItemsByName} from "../utils";
 
 
 const cleanHerbs = [
@@ -105,4 +106,4 @@ const cleanHerbs = [
 ];
 
 
-export default cleanHerbs;
+export default sortItemsByName(cleanHerbs);
