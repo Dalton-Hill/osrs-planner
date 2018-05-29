@@ -9,6 +9,7 @@ import * as actions from '../../store/actions';
 import {herblore} from "../../store/initialState/skills/allskillNames";
 import {grimyHerb, cleanHerb} from "../../store/initialState/items/allTypeNames";
 
+
 class Herblore extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,8 @@ class Herblore extends Component {
       goalXP: 0,
       activeSectionIndex: 0,
       sections: [
-        {name: 'Clean Herbs', actions: () => this.props.cleanHerbActions, imageName: 'Grimy_guam_leaf.png', },
+        {name: 'Clean Herbs', actions: () => this.props.cleanHerbActions, imageName: 'Grimy_guam_leaf.png'},
+        {name: 'Make Potions', actions: () => this.props.makePotionActions, imageName: 'Attack_potion(3).png'},
       ]
     }
   }
@@ -75,7 +77,8 @@ const mapStateToProps = state => {
     grimyHerbs: state.inventory.filter(item => item.type === grimyHerb),
     cleanHerbs: state.inventory.filter(item => item.type === cleanHerb),
     herbloreActions: state.actions.filter(action => primarySkillForAction(action).name === herblore),
-    cleanHerbActions: state.actions.filter(action => primarySkillForAction(action).name === herblore && action.name.includes('Clean'))
+    cleanHerbActions: state.actions.filter(action => primarySkillForAction(action).name === herblore && action.name.includes('Clean')),
+    makePotionActions: state.actions.filter(action => primarySkillForAction(action).name === herblore && action.name.includes('potion'))
   }
 };
 

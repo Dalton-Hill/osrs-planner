@@ -5,7 +5,7 @@ import {
   attackDose,
   combatDose,
   compostDose,
-  defenseDose,
+  defenceDose,
   energyDose, extendedAntifireDose, extendedSuperAntifireDose,
   fishingDose,
   guthixBalanceDose,
@@ -82,7 +82,7 @@ const potionDoses = [
     count: 0
   },
   {
-    name: defenseDose,
+    name: defenceDose,
     imageName: 'Defence_potion(1).png',
     type: potionDose,
     count: 0
