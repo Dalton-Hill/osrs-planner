@@ -37,7 +37,7 @@ import {
   harralander,
   irit,
   kwuarm,
-  lantadyme,
+  lantadyme, marrentill,
   ranarrWeed,
   snapdragon,
   tarromin,
@@ -197,7 +197,7 @@ const cleanHerbActions = [
       {name: grimyMarrentill, count: 1}
     ],
     itemsRewarded: [
-      {name: cleanMarrentill, count: 1}
+      {name: marrentill, count: 1}
     ]
   },
   {
