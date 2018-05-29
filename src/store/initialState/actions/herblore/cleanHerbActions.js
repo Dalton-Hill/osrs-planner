@@ -288,4 +288,13 @@ const cleanHerbActions = [
 ];
 
 
-export default cleanHerbActions;
+const levelRequired = (action) => action.skillsRequired[0].level;
+
+
+export default cleanHerbActions.sort((a, b) => {
+  const aLevelReq = levelRequired(a);
+  const bLevelReq = levelRequired(b);
+  if (aLevelReq > bLevelReq) return 1;
+  if (aLevelReq < bLevelReq) return -1;
+  return 0
+});

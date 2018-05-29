@@ -9,7 +9,6 @@ import * as actions from '../../store/actions';
 import {herblore} from "../../store/initialState/skills/allskillNames";
 import {grimyHerb, cleanHerb} from "../../store/initialState/items/allTypeNames";
 
-
 class Herblore extends Component {
   constructor(props) {
     super(props);
@@ -18,17 +17,10 @@ class Herblore extends Component {
       goalXP: 0,
       activeSectionIndex: 0,
       sections: [
-        {name: 'Grimy Herbs', props: ['grimyHerbs'], imageName: 'Grimy_guam_leaf.png'},
+        {name: 'Clean Herbs', actions: () => this.props.cleanHerbActions, imageName: 'Grimy_guam_leaf.png', },
       ]
     }
   }
-
-  unpackItemsForProps = (...propNames) => {
-    return propNames.reduce((allItems, propName) => {
-      return allItems.concat(this.props[propName])
-    }, []);
-  };
-
   handleSectionClick = (index) => {
     this.setState({ activeSectionIndex: index})
   };
@@ -69,7 +61,8 @@ class Herblore extends Component {
                                onChangeStartingXP={this.onChangeStartingXP}
                                onChangeGoalXP={this.onChangeGoalXP}/>
           <SkillProgressBar percent={(this.state.startingXP + gainedXP) / this.state.goalXP}/>
-          <HerbloreTable herbloreActions={this.props.herbloreActions} onUpdateActionCount={this.props.onUpdateActionCount}/>
+          <HerbloreTable herbloreActions={this.state.sections[this.state.activeSectionIndex].actions()}
+                         onUpdateActionCount={this.props.onUpdateActionCount}/>
         </div>
       </div>
     )
@@ -81,7 +74,8 @@ const mapStateToProps = state => {
   return {
     grimyHerbs: state.inventory.filter(item => item.type === grimyHerb),
     cleanHerbs: state.inventory.filter(item => item.type === cleanHerb),
-    herbloreActions: state.actions.filter(action => primarySkillForAction(action).name === herblore)
+    herbloreActions: state.actions.filter(action => primarySkillForAction(action).name === herblore),
+    cleanHerbActions: state.actions.filter(action => primarySkillForAction(action).name === herblore && action.name.includes('Clean'))
   }
 };
 
