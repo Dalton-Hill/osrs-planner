@@ -73,3 +73,13 @@ export const primarySkillForAction = (action) => {
   }, {name: null, amount: 0});
   return allSkills.find(skill => skill.name === primarySkill.name);
 };
+
+
+export const xpGainedForSkill = skillName => {
+  const state = store.getState();
+  return state.actions.reduce((totalXP, action) => {
+    let skillReward = action.skillExperienceRewards.find(skill => skill.name === skillName);
+    if (typeof skillReward !== 'undefined') return totalXP + (action.count * skillReward.amount);
+    return totalXP
+  }, 0);
+};

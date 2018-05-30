@@ -6,6 +6,7 @@ import Firemaking from './Firemaking/Firemaking';
 import Fletching from './Fletching/Fletching';
 import Herblore from './Herblore/Herblore';
 import Layout from '../hoc/Layout/Layout';
+import Summary from "./Summary/Summary";
 import './App.css';
 
 
@@ -13,6 +14,7 @@ class App extends Component {
   state = {
     routes: [
       {description: "Inventory", logoName: 'Inventory.png', component: Inventory},
+      {description: "Summary", logoName: 'Stats_icon.png', component: Summary},
       {description: "Woodcutting", logoName: 'woodcutting_icon.png', component: Woodcutting},
       {description: "Firemaking", logoName: 'Firemaking_icon.png', component: Firemaking},
       {description: "Fletching", logoName: 'Fletching_icon.png', component: Fletching},

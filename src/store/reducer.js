@@ -1,6 +1,7 @@
 import * as actions from './actions';
 import allItems from './initialState/items/allItems';
 import allActions from './initialState/actions/allActions';
+import allSkills from "./initialState/skills/allSkills";
 
 
 const initialState = {
@@ -9,6 +10,9 @@ const initialState = {
   ],
   actions: [
     ...allActions
+  ],
+  skills: [
+    ...allSkills
   ]
 };
 
