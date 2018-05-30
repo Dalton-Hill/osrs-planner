@@ -2,6 +2,22 @@ import store from './store';
 import allSkills from './initialState/skills/allSkills';
 
 
+const numberOfItemUsedByAction = (item, action) => {
+  let numberUsed = 0;
+  const itemsRequiredPerAction = action.itemsRequired.find(req => req.name === item.name).count;
+  if (typeof itemsRequiredPerAction !== 'undefined') numberUsed = action.count * itemsRequiredPerAction;
+  return numberUsed;
+};
+
+
+const numberOfItemRewardedByAction = (item, action) => {
+  let numberRewarded = 0;
+  const itemsRewardedPerAction = action.itemsRewarded.find(reward => reward.name === item.name).count;
+  if (typeof itemsRewardedPerAction !== 'undefined') numberRewarded = action.count * itemsRewardedPerAction;
+  return numberRewarded;
+};
+
+
 export const getItemsByType = (...types) => {
   const state = store.getState();
   let itemsToReturn = [];
@@ -39,8 +55,14 @@ export const actionsThatRewardedItem = item => {
 
 export const calculateItemCountAfterActions = item => {
   let count = item.count;
-  count = actionsThatRequiredItem(item).reduce((count, action) => {return count - action.count}, count);
-  return actionsThatRewardedItem(item).reduce((count, action) => {return count + action.count}, count);
+
+  count = actionsThatRequiredItem(item).reduce((count, action) => {
+    return count - numberOfItemUsedByAction(item, action);
+  }, count);
+
+  return actionsThatRewardedItem(item).reduce((count, action) => {
+    return count + numberOfItemRewardedByAction(item, action)
+  }, count);
 };
 
 
