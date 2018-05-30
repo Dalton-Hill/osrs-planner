@@ -1,5 +1,8 @@
+import {returnMaxPossibleActions} from "./utils";
+
 export const UPDATE_COUNT = 'UPDATE_COUNT';
 export const UPDATE_ACTION_COUNT = 'UPDATE_ACTION_COUNT';
+export const MAKE_ALL_ACTION = 'MAKE_ALL_ACTION';
 
 
 export const updateCount = ({ state, item, event }) => {
@@ -31,6 +34,23 @@ export const updateActionCount = ({ state, rsAction, event }) => {
         return {
           ...mappedAction,
           count: newCount
+        }
+      })
+    ]
+  }
+};
+
+
+export const makeAllAction = ({ state, rsAction }) => {
+  const maxPossibleActions = returnMaxPossibleActions(rsAction, state);
+  return {
+    ...state,
+    actions: [
+      ...state.actions.map(mappedAction => {
+        if (mappedAction.name !== rsAction.name) return mappedAction;
+        return {
+          ...mappedAction,
+          count: maxPossibleActions
         }
       })
     ]

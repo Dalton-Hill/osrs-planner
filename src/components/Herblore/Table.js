@@ -15,7 +15,9 @@ const table = (props) => {
       </tr>
       </thead>
       <tbody>
-        {props.herbloreActions.map(herbloreAction => <Row action={herbloreAction} key={herbloreAction.name} onUpdateActionCount={props.onUpdateActionCount}/>)}
+        {props.herbloreActions.map(herbloreAction => <Row action={herbloreAction} key={herbloreAction.name}
+                                                          onUpdateActionCount={props.onUpdateActionCount}
+                                                          onClickMakeAll={props.onClickMakeAll}/>)}
       </tbody>
     </table>
   )

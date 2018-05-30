@@ -64,7 +64,8 @@ class Herblore extends Component {
                                onChangeGoalXP={this.onChangeGoalXP}/>
           <SkillProgressBar percent={(this.state.startingXP + gainedXP) / this.state.goalXP}/>
           <HerbloreTable herbloreActions={this.state.sections[this.state.activeSectionIndex].actions()}
-                         onUpdateActionCount={this.props.onUpdateActionCount}/>
+                         onUpdateActionCount={this.props.onUpdateActionCount}
+                         onClickMakeAll={this.props.onClickMakeAll}/>
         </div>
       </div>
     )
@@ -86,6 +87,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onUpdateActionCount: (event, rsAction) => dispatch({type: actions.UPDATE_ACTION_COUNT, rsAction, event}),
+    onClickMakeAll: (rsAction) => dispatch({type: actions.MAKE_ALL_ACTION, rsAction}),
   }
 };
 

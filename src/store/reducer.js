@@ -23,6 +23,8 @@ const reducer = (state = initialState, action) => {
       return actions.updateCount({ state, item: action.item, event: action.event });
     case actions.UPDATE_ACTION_COUNT:
       return actions.updateActionCount({ state, rsAction: action.rsAction, event: action.event });
+    case actions.MAKE_ALL_ACTION:
+      return actions.makeAllAction({ state, rsAction: action.rsAction });
     default:
       return state
   }
