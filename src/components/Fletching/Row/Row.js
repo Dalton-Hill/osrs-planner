@@ -8,8 +8,6 @@ import ItemsRequiredGroup from '../../../UI/ItemsRequiredGroup/ItemsRequiredGrou
 const row = ({ action, onUpdateActionCount }) => {
   const skillToDisplay = fletching;
   const levelRequired = action.skillsRequired.find(skill => skill.name === skillToDisplay).level;
-  const xpPerAction = action.skillExperienceRewards.find(skill => skill.name === skillToDisplay).amount;
-  const totalXPGained = xpPerAction * action.count;
   return (
     <tr>
       <td>
@@ -22,7 +20,6 @@ const row = ({ action, onUpdateActionCount }) => {
       <td>
         <input type={'text'} className={"form-control"} value={action.count} onChange={(event) => onUpdateActionCount(event, action)}/>
       </td>
-      <td>{totalXPGained.toFixed(2)}</td>
     </tr>
   )
 };

@@ -10,7 +10,6 @@ const table = (props) => {
         <th>Action</th>
         <th>LvL</th>
         <th>Chopped</th>
-        <th>XP</th>
       </tr>
       </thead>
       <tbody>

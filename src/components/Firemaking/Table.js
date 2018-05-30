@@ -9,10 +9,9 @@ const table = (props) => {
       <tr>
         <th>Action</th>
         <th>LvL</th>
-        <th>Items Required Per Action</th>
-        <th>Items Available</th>
+        <th>Cost</th>
+        <th>Available</th>
         <th>Burn</th>
-        <th>XP</th>
       </tr>
       </thead>
       <tbody>
