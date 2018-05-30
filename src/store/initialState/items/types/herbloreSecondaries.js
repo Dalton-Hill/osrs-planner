@@ -9,7 +9,6 @@ import {
   redSpidersEggs,
   garlic,
   silverDust,
-  blamishSnailSlime,
   chocolateDust,
   whiteBerries,
   toadsLegs,
@@ -21,7 +20,6 @@ import {
   nailBeastNails,
   yewRoots,
   wineOfZamorak,
-  cactusSpine,
   potatoCactus,
   amylaseCrystal,
   jangerberries,
@@ -91,12 +89,6 @@ const herbloreSecondaries = [
     count: 0
   },
   {
-    name: blamishSnailSlime,
-    imageName: 'Blamish_snail_slime.png',
-    type: herbloreSecondary,
-    count: 0
-  },
-  {
     name: chocolateDust,
     imageName: 'Chocolate_dust.png',
     type: herbloreSecondary,
@@ -159,12 +151,6 @@ const herbloreSecondaries = [
   {
     name: wineOfZamorak,
     imageName: 'Wine_of_zamorak.png',
-    type: herbloreSecondary,
-    count: 0
-  },
-  {
-    name: cactusSpine,
-    imageName: 'Cactus_spine.png',
     type: herbloreSecondary,
     count: 0
   },

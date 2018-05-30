@@ -1,6 +1,6 @@
 export const usageButtonImage = {
-  height: "25px",
-  width: "25px"
+  height: "15px",
+  width: "15px"
 };
 
 export const badge = {

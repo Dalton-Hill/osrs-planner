@@ -8,7 +8,7 @@ const itemAvailableButton = (props) => {
   const itemCountAfterActions = calculateItemCountAfterActions(props.item);
   const badgeClass = itemCountAfterActions > 0 ? "badge badge-success" : "badge badge-danger";
   return (
-    <button className={"btn btn-outline-info"}>
+    <button className={"btn btn-outline-info"} tabIndex={-1}>
       <img src={require('../../../Assets/images/' + props.item.imageName)} alt={props.item.name}
            style={styles.usageButtonImage}/>
       <span className={badgeClass} style={styles.badge}>{itemCountAfterActions}</span>
