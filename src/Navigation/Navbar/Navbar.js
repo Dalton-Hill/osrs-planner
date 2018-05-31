@@ -14,7 +14,7 @@ class navbar extends Component {
   render() {
     return (
       <nav className={"navbar navbar-expand-lg navbar-dark bg-dark"}>
-        <Link className="navbar-brand" to={"/Home"} onClick={() => this.setState({ activeLinkIndex: null })}>IronCalculator</Link>
+        <Link className="navbar-brand" to={"/Home"} onClick={() => this.setState({ activeLinkIndex: null })}>OSRSDayDream</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"/>
