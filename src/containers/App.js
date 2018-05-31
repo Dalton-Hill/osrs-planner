@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 import Inventory from './Inventory/Inventory';
 import Woodcutting from './Woodcutting/Woodcutting';
 import Firemaking from './Firemaking/Firemaking';
 import Fletching from './Fletching/Fletching';
 import Herblore from './Herblore/Herblore';
+import Home from './Home/Home';
 import Layout from '../hoc/Layout/Layout';
 import Summary from "./Summary/Summary";
 import './App.css';
@@ -26,7 +27,11 @@ class App extends Component {
     return (
       <Router>
         <Layout routes={this.state.routes}>
-          {this.state.routes.map((route, index) => <Route key={index} path={'/' + route.description} component={route.component}/>)}
+          <Switch>
+            <Route path={'/Home'} component={Home}/>
+            {this.state.routes.map((route, index) => <Route key={index} path={'/' + route.description} component={route.component}/>)}
+            <Redirect from={'/'} to={'/Home'} exact={true}/>
+          </Switch>
         </Layout>
       </Router>
     );
