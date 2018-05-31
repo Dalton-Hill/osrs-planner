@@ -49,7 +49,9 @@ class Firemaking extends Component {
                                onChangeStartingXP={this.onChangeStartingXP}
                                onChangeGoalXP={this.onChangeGoalXP}/>
           <SkillProgressBar percent={(this.state.startingXP + gainedXP) / this.state.goalXP}/>
-          <FiremakingTable firemakingActions={this.props.firemakingActions} onUpdateActionCount={this.props.onUpdateActionCount}/>
+          <FiremakingTable firemakingActions={this.props.firemakingActions}
+                           onUpdateActionCount={this.props.onUpdateActionCount}
+                           onClickMakeAll={this.props.onClickMakeAll}/>
         </div>
       </div>
     )
@@ -67,6 +69,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onUpdateActionCount: (event, rsAction) => dispatch({type: actions.UPDATE_ACTION_COUNT, rsAction, event}),
+    onClickMakeAll: (rsAction) => dispatch({type: actions.MAKE_ALL_ACTION, rsAction}),
   }
 };
 

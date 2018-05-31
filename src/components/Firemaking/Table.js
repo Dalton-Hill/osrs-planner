@@ -16,7 +16,8 @@ const table = (props) => {
       </thead>
       <tbody>
         {props.firemakingActions.map(action => <Row action={action} key={action.name}
-                                                   onUpdateActionCount={props.onUpdateActionCount}/>)}
+                                                    onUpdateActionCount={props.onUpdateActionCount}
+                                                    onClickMakeAll={props.onClickMakeAll}/>)}
       </tbody>
     </table>
   )

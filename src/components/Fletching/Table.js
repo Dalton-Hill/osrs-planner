@@ -15,7 +15,9 @@ const table = (props) => {
       </tr>
       </thead>
       <tbody>
-        {props.fletchingActions.map(fletchingAction => <Row action={fletchingAction} key={fletchingAction.name} onUpdateActionCount={props.onUpdateActionCount}/>)}
+        {props.fletchingActions.map(fletchingAction => <Row action={fletchingAction} key={fletchingAction.name}
+                                                          onUpdateActionCount={props.onUpdateActionCount}
+                                                          onClickMakeAll={props.onClickMakeAll}/>)}
       </tbody>
     </table>
   )

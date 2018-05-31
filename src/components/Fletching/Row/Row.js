@@ -5,7 +5,7 @@ import ItemsAvailableGroup from '../../../UI/ItemsAvailableGroup/ItemsAvailableG
 import ItemsRequiredGroup from '../../../UI/ItemsRequiredGroup/ItemsRequiredGroup';
 
 
-const row = ({ action, onUpdateActionCount }) => {
+const row = ({ action, onUpdateActionCount, onClickMakeAll }) => {
   const skillToDisplay = fletching;
   const levelRequired = action.skillsRequired.find(skill => skill.name === skillToDisplay).level;
   return (
@@ -18,7 +18,13 @@ const row = ({ action, onUpdateActionCount }) => {
       <td><ItemsRequiredGroup action={action}/></td>
       <td><ItemsAvailableGroup action={action}/></td>
       <td>
-        <input type={'text'} className={"form-control"} value={action.count} onChange={(event) => onUpdateActionCount(event, action)}/>
+        <div className={"input-group mb-2"}>
+          <div className="input-group-prepend">
+            <div className="input-group-text" style={styles.makeAll}
+                 onClick={() => onClickMakeAll(action)}>All</div>
+          </div>
+          <input type={'text'} className={"form-control"} value={action.count} onChange={(event) => onUpdateActionCount(event, action)}/>
+        </div>
       </td>
     </tr>
   )
