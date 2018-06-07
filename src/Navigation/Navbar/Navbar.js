@@ -35,6 +35,13 @@ class navbar extends Component {
             })}
           </ul>
         </div>
+          <ul className={"navbar-nav"}>
+            <li className={"nav-item"}>
+              <Link className={"nav-link"} to={'/Authentication'}>
+                Log In
+              </Link>
+            </li>
+          </ul>
       </nav>
     )
   }

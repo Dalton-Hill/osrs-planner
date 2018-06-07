@@ -9,6 +9,7 @@ import Home from './Home/Home';
 import Layout from '../hoc/Layout/Layout';
 import Summary from "./Summary/Summary";
 import './App.css';
+import Authentication from "./Authentication/Authentication";
 
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
         <Layout routes={this.state.routes}>
           <Switch>
             <Route path={'/Home'} component={Home}/>
+            <Route path={'/Authentication'} component={Authentication}/>
             {this.state.routes.map((route, index) => <Route key={index} path={'/' + route.description} component={route.component}/>)}
             <Redirect from={'/'} to={'/Home'} exact={true}/>
           </Switch>
