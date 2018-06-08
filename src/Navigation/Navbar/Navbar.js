@@ -38,7 +38,7 @@ class navbar extends Component {
           <ul className={"navbar-nav"}>
             <li className={"nav-item"}>
               <Link className={"nav-link"} to={'/Authentication'}>
-                Log In
+                Sign In
               </Link>
             </li>
           </ul>
