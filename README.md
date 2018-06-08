@@ -1,4 +1,4 @@
-[Site Link](http://osrs-planner.s3-website-us-east-1.amazonaws.com/)
+[Site Link](http://osrsDayDream.com)
 
 
 # OSRS Planner
