@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as styles from './styles';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
 
-class navbar extends Component {
+
+class Navbar extends Component {
   state = {
     activeLinkIndex: null
   };
@@ -37,9 +40,7 @@ class navbar extends Component {
         </div>
           <ul className={"navbar-nav"}>
             <li className={"nav-item"}>
-              <Link className={"nav-link"} to={'/Authentication'}>
-                Sign In
-              </Link>
+              {this.props.isAuthenticated ? <Link className={"nav-link"} to={'/'} onClick={this.props.signOut}>Sign Out</Link> : <Link className={"nav-link"} to={'/Authentication'}>Sign In</Link>}
             </li>
           </ul>
       </nav>
@@ -48,4 +49,18 @@ class navbar extends Component {
 }
 
 
-export default navbar;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.isAuthenticated
+  }
+};
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => dispatch({ type: actions.SIGN_OUT })
+  }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
