@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import SignUp from "../../Forms/SignUp/SignUp";
+import ConfirmSignUp from "../../Forms/ConfirmSignUp/ConfirmSignUp";
+import SignIn from "../../Forms/SignIn/SignIn";
 
 
 class Authentication extends Component {
   state = {
     activeSectionIndex: 0,
     sections: [
-      {title: 'Sign in', comp: SignUp},
+      {title: 'Sign in', comp: SignIn},
       {title: 'Sign up', comp: SignUp},
-      {title: 'Confirm email', comp: SignUp},
+      {title: 'Confirm email', comp: ConfirmSignUp},
     ]
   };
 

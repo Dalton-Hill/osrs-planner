@@ -4,6 +4,9 @@ export const UPDATE_COUNT = 'UPDATE_COUNT';
 export const UPDATE_ACTION_COUNT = 'UPDATE_ACTION_COUNT';
 export const MAKE_ALL_ACTION = 'MAKE_ALL_ACTION';
 
+export const SIGN_IN = 'SIGN_IN';
+export const SIGN_OUT = 'SIGN_OUT';
+
 
 export const updateCount = ({ state, item, event }) => {
   let newCount = parseInt(event.target.value, 10);
@@ -54,5 +57,23 @@ export const makeAllAction = ({ state, rsAction }) => {
         }
       })
     ]
+  }
+};
+
+
+export const signIn = ({ state, idTokenPayload }) => {
+  return {
+    ...state,
+    idTokenPayload,
+    isAuthenticated: true
+  }
+};
+
+
+export const signOut = ({ state }) => {
+  return {
+    ...state,
+    idTokenPayload: null,
+    isAuthenticated: false
   }
 };
