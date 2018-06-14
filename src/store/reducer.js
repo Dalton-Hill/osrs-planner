@@ -7,6 +7,7 @@ import allSkills from "./initialState/skills/allSkills";
 const initialState = {
   isAuthenticated: false,
   idTokenPayload: null,
+  idToken: null,
   inventory: [
     ...allItems
   ],
@@ -28,9 +29,17 @@ const reducer = (state = initialState, action) => {
     case actions.MAKE_ALL_ACTION:
       return actions.makeAllAction({ state, rsAction: action.rsAction });
     case actions.SIGN_IN:
-      return actions.signIn({ state, idTokenPayload: action.idTokenPayload });
+      return actions.signIn({ state, idTokenPayload: action.idTokenPayload, idToken: action.idToken });
     case actions.SIGN_OUT:
       return actions.signOut({ state });
+    case actions.UPLOAD_INVENTORY:
+      return state;
+    case actions.DOWNLOAD_INVENTORY:
+      const inventory = typeof action.inventory === "undefined" ? state.inventory : action.inventory;
+      return {
+        ...state,
+        inventory
+      };
     default:
       return state
   }
