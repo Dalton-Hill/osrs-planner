@@ -85,7 +85,7 @@ class SignIn extends Component {
       .then(data => {
         const formAlerts = [{type: 'success', text: 'Log in successful.'}];
         this.setState({ formAlerts });
-        this.props.signIn(data.signInUserSession.idToken.payload)
+        this.props.signIn(data.signInUserSession.idToken.payload, data.signInUserSession.idToken.jwtToken)
       })
       .catch(err => {
         const formAlerts = [{type: 'danger', text: err.message}];
@@ -135,7 +135,7 @@ class SignIn extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signIn: (idTokenPayload) => dispatch({type: actions.SIGN_IN, idTokenPayload})
+    signIn: (idTokenPayload, idToken) => dispatch({type: actions.SIGN_IN, idTokenPayload, idToken: idToken})
   }
 };
 

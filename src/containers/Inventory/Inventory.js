@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Tabs from '../../components/Inventory/Tabs/Tabs';
 import InventorySection from '../../components/Inventory/InventorySection/InventorySection';
+import DatabaseButtonGroup from '../../UI/DatabaseButtonGroup/DatabaseButtonGroup';
 import * as actions from "../../store/actions";
 import {
   log,
@@ -40,11 +41,11 @@ class Inventory extends Component {
   };
 
   render() {
-
     return (
       <div className="card">
         <div className="card-header">
-          <h2>Inventory</h2>
+          <h2 style={{display: "inline"}}>Inventory</h2>
+          {this.props.isAuthenticated ? <DatabaseButtonGroup onUpload={() => this.props.upload(this.props.idToken, this.props.inventory)} onDownload={() => this.props.download(this.props.idToken)}/> : null}
           <Tabs sections={this.state.sections} activeSectionIndex={this.state.activeSectionIndex} click={this.handleSectionClick}/>
         </div>
         <InventorySection items={this.unpackItemsForProps(...this.state.sections[this.state.activeSectionIndex].props)}
@@ -57,6 +58,9 @@ class Inventory extends Component {
 
 const mapStateToProps = state => {
   return {
+    isAuthenticated: state.isAuthenticated,
+    idToken: state.idToken,
+    inventory: state.inventory,
     logs: state.inventory.filter(item => item.type === log),
     fletchingProducts: state.inventory.filter(item => item.type === fletchingProduct),
     fletchingSecondaries: state.inventory.filter(item => item.type === fletchingSecondary),
@@ -71,6 +75,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onUpdateCount: (event, item) => dispatch({type: actions.UPDATE_COUNT, item, event}),
+    upload: (idToken, inventory) => dispatch(actions.uploadInventory(idToken, inventory)),
+    download: (idToken) => dispatch(actions.downloadInventory(idToken)),
   }
 };
 
