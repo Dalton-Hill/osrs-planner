@@ -69,8 +69,6 @@ export const makeAllAction = ({ state, rsAction }) => {
 
 
 export const signIn = ({ state, idTokenPayload, idToken }) => {
-  console.log(idToken);
-  console.log(idTokenPayload);
   return {
     ...state,
     idToken,
