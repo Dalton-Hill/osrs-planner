@@ -1,7 +1,7 @@
-import * as actions from './actions';
 import allItems from './initialState/items/allItems';
 import allActions from './initialState/actions/allActions';
 import allSkills from "./initialState/skills/allSkills";
+import * as actions from './actions';
 
 
 const initialState = {
@@ -39,6 +39,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         inventory
+      };
+    case actions.UPLOAD_ACTIONS:
+      return state;
+    case actions.DOWNLOAD_ACTIONS:
+      const actionsDownload = typeof action.actions === "undefined" ? state.actions : action.actions;
+      return {
+        ...state,
+        actions: actionsDownload
       };
     default:
       return state

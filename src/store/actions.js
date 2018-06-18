@@ -1,5 +1,5 @@
 import {returnMaxPossibleActions} from "./utils";
-import {inventoryAPI} from "./apiInstances";
+import {inventoryAPI, actionsAPI} from "./apiInstances";
 
 export const UPDATE_COUNT = 'UPDATE_COUNT';
 export const UPDATE_ACTION_COUNT = 'UPDATE_ACTION_COUNT';
@@ -11,6 +11,8 @@ export const SIGN_OUT = 'SIGN_OUT';
 
 export const UPLOAD_INVENTORY = 'UPLOAD_INVENTORY';
 export const DOWNLOAD_INVENTORY = 'DOWNLOAD_INVENTORY';
+export const UPLOAD_ACTIONS = 'UPLOAD_ACTIONS';
+export const DOWNLOAD_ACTIONS = 'DOWNLOAD_ACTIONS';
 
 
 export const updateCount = ({ state, item, event }) => {
@@ -105,6 +107,7 @@ export const uploadInventory = (idToken, inventory) => {
   }
 };
 
+
 export const downloadInventory = (idToken) => {
   return dispatch => {
     inventoryAPI.post('', {
@@ -117,6 +120,41 @@ export const downloadInventory = (idToken) => {
       })
       .catch(err => {
         dispatch({type: DOWNLOAD_INVENTORY})
+      })
+  }
+};
+
+
+export const uploadActions = (idToken, actions) => {
+  return dispatch => {
+    actionsAPI.post('', {
+      token: idToken,
+      stateName: "actions",
+      actions,
+      intent: 'put'
+    })
+      .then(data => {
+        dispatch({ type: UPLOAD_ACTIONS })
+      })
+      .catch(err => {
+        dispatch({ type: UPLOAD_ACTIONS })
+      })
+  }
+};
+
+
+export const downloadActions = (idToken) => {
+  return dispatch => {
+    actionsAPI.post('', {
+      token: idToken,
+      stateName: "actions",
+      intent: 'get'
+    })
+      .then(responseObject => {
+        dispatch({type: DOWNLOAD_ACTIONS, actions: responseObject.data.actions})
+      })
+      .catch(err => {
+        dispatch({type: DOWNLOAD_ACTIONS})
       })
   }
 };

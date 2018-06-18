@@ -5,6 +5,7 @@ import HerbloreTable from '../../components/Herblore/Table';
 import SkillProgressBar from '../../UI/Progress/SkillProgressBar/SkillProgressBar';
 import SkillExperienceForm from '../../Forms/SkillExperienceForm/SkillExperienceForm';
 import {primarySkillForAction} from '../../store/utils';
+import DatabaseButtonGroup from '../../UI/DatabaseButtonGroup/DatabaseButtonGroup';
 import * as actions from '../../store/actions';
 import {herblore} from "../../store/initialState/skills/allskillNames";
 import {grimyHerb, cleanHerb} from "../../store/initialState/items/allTypeNames";
@@ -55,7 +56,8 @@ class Herblore extends Component {
     return (
       <div className={"card"}>
         <div className={"card-header"}>
-          <h2 className={"card-title"}>Herblore</h2>
+          <h2 className={"card-title"} style={{display: "inline"}}>Herblore</h2>
+          {this.props.isAuthenticated ? <DatabaseButtonGroup onUpload={() => this.props.upload(this.props.idToken, this.props.actions)} onDownload={() => this.props.download(this.props.idToken)}/> : null}
           <Tabs sections={this.state.sections} activeSectionIndex={this.state.activeSectionIndex} click={this.handleSectionClick}/>
         </div>
         <div className={"card-body"}>
@@ -75,6 +77,9 @@ class Herblore extends Component {
 
 const mapStateToProps = state => {
   return {
+    isAuthenticated: state.isAuthenticated,
+    idToken: state.idToken,
+    actions: state.actions,
     grimyHerbs: state.inventory.filter(item => item.type === grimyHerb),
     cleanHerbs: state.inventory.filter(item => item.type === cleanHerb),
     herbloreActions: state.actions.filter(action => primarySkillForAction(action).name === herblore),
@@ -88,6 +93,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onUpdateActionCount: (event, rsAction) => dispatch({type: actions.UPDATE_ACTION_COUNT, rsAction, event}),
     onClickMakeAll: (rsAction) => dispatch({type: actions.MAKE_ALL_ACTION, rsAction}),
+    upload: (idToken, actionsState) => dispatch(actions.uploadActions(idToken, actionsState)),
+    download: (idToken) => dispatch(actions.downloadActions(idToken)),
   }
 };
 
