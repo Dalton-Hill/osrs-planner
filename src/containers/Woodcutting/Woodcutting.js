@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import WoodcuttingTable from '../../components/Woodcutting/Table';
 import SkillProgressBar from '../../UI/Progress/SkillProgressBar/SkillProgressBar';
 import SkillExperienceForm from '../../Forms/SkillExperienceForm/SkillExperienceForm';
+import DatabaseButtonGroup from '../../UI/DatabaseButtonGroup/DatabaseButtonGroup';
 import * as actions from '../../store/actions';
 import { woodcutting } from '../../store/initialState/skills/allskillNames';
 import { primarySkillForAction } from '../../store/utils';
@@ -42,7 +43,8 @@ class Woodcutting extends Component {
     return (
       <div className={"card"}>
         <div className={"card-header"}>
-          <h2 className={"card-title"}>Woodcutting</h2>
+          <h2 className={"card-title"} style={{display: "inline"}}>Woodcutting</h2>
+          {this.props.isAuthenticated ? <DatabaseButtonGroup onUpload={() => this.props.upload(this.props.idToken, this.props.actions)} onDownload={() => this.props.download(this.props.idToken)}/> : null}
         </div>
         <div className={"card-body"}>
           <SkillExperienceForm startingXP={this.state.startingXP} goalXP={this.state.goalXP}
@@ -59,6 +61,9 @@ class Woodcutting extends Component {
 
 const mapStateToProps = state => {
   return {
+    isAuthenticated: state.isAuthenticated,
+    idToken: state.idToken,
+    actions: state.actions,
     woodcuttingActions: state.actions.filter(action => primarySkillForAction(action).name === woodcutting)
   }
 };
@@ -67,6 +72,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onUpdateActionCount: (event, rsAction) => dispatch({type: actions.UPDATE_ACTION_COUNT, rsAction, event}),
+    upload: (idToken, actionsState) => dispatch(actions.uploadActions(idToken, actionsState)),
+    download: (idToken) => dispatch(actions.downloadActions(idToken)),
   }
 };
 

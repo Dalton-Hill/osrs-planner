@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import FiremakingTable from '../../components/Firemaking/Table';
 import SkillProgressBar from '../../UI/Progress/SkillProgressBar/SkillProgressBar';
 import SkillExperienceForm from '../../Forms/SkillExperienceForm/SkillExperienceForm';
+import DatabaseButtonGroup from '../../UI/DatabaseButtonGroup/DatabaseButtonGroup';
 import * as actions from '../../store/actions';
 import {firemaking} from '../../store/initialState/skills/allskillNames';
 import { primarySkillForAction } from '../../store/utils';
@@ -42,7 +43,8 @@ class Firemaking extends Component {
     return (
       <div className={"card"}>
         <div className={"card-header"}>
-          <h2 className={"card-title"}>Firemaking</h2>
+          <h2 className={"card-title"} style={{display: "inline"}}>Firemaking</h2>
+          {this.props.isAuthenticated ? <DatabaseButtonGroup onUpload={() => this.props.upload(this.props.idToken, this.props.actions)} onDownload={() => this.props.download(this.props.idToken)}/> : null}
         </div>
         <div className={"card-body"}>
           <SkillExperienceForm startingXP={this.state.startingXP} goalXP={this.state.goalXP}
@@ -61,6 +63,9 @@ class Firemaking extends Component {
 
 const mapStateToProps = state => {
   return {
+    isAuthenticated: state.isAuthenticated,
+    idToken: state.idToken,
+    actions: state.actions,
     firemakingActions: state.actions.filter(action => primarySkillForAction(action).name === firemaking)
   }
 };
@@ -70,6 +75,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onUpdateActionCount: (event, rsAction) => dispatch({type: actions.UPDATE_ACTION_COUNT, rsAction, event}),
     onClickMakeAll: (rsAction) => dispatch({type: actions.MAKE_ALL_ACTION, rsAction}),
+    upload: (idToken, actionsState) => dispatch(actions.uploadActions(idToken, actionsState)),
+    download: (idToken) => dispatch(actions.downloadActions(idToken)),
   }
 };
 
