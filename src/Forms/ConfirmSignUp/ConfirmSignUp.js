@@ -82,7 +82,6 @@ class ConfirmSignUp extends Component {
     const formData = this.zipFormData();
     Auth.confirmSignUp(formData.username, formData.code)
       .then(data => {
-        console.log(data);
         const formAlerts = [{type: 'success', text: 'Verification successful.'}];
         this.setState({ formAlerts })
       })
